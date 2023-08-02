@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer')
 
 const createInvoiceService = async (data) => {
     const { assignment_topic, course_title, course_code, student_name, student_id, student_year, student_semester, student_session, student_department, teacher_name, teacher_position, teacher_department, teacher_university, submission_date } = data;
-    const imageUrl = 'http://localhost:3000/images/logo/bsmrstu.jpg';
+    const imageUrl = 'https://cover-page.vercel.app/images/logo/bsmrstu.jpg';
     const launchOptions = {
         args: ['--no-sandbox'],
         headless: "new"
