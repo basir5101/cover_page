@@ -86,8 +86,8 @@ const createInvoiceService = async (data) => {
                                 <div><strong>Name: </strong> ${student_name} </div>
                                 <div><strong>Student Id: </strong>  ${student_id} </div>
                                 <div><strong>Year: </strong> ${student_year} </div>
-                                <div><strong>Semester: </strong> ${student_year} </div>
-                                <div><strong>Session: </strong> ${student_semester} </div>
+                                <div><strong>Semester: </strong> ${student_semester} </div>
+                                <div><strong>Session: </strong> ${student_session} </div>
                                 <div>Department of ${student_department}</div>
                                 <div>Bangabandhu Sheikh Mujibur Rahman
                                     Science & Technology University,
@@ -129,11 +129,19 @@ const createInvoiceService = async (data) => {
 }
 
 export default async function handler(req, res) {
-    const result = await createInvoiceService(req.body);
+    try {
+        const result = await createInvoiceService(req.body);
 
-    res.status(200).json({
-        status: 'success',
-        message: 'cover page created successfully',
-        data: result
-    })
+        res.status(200).json({
+            status: 'success',
+            message: 'cover page created successfully',
+            data: result
+        })
+    } catch (error) {
+        res.status(200).json({
+            status: 'failed',
+            message: error?.message,
+            data: error
+        })
+    }
 }

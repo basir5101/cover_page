@@ -18,18 +18,22 @@ export default function Assignment() {
 
     const getHtml = async (pdfData) => {
         // const { data } = await axios.post('/api/cover/bsmrstu/assignment', pdfData);
-        const response = await fetch('/api/cover/bsmrstu/assignment', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(pdfData),
-        });
+        try {
+            const response = await fetch('/api/cover/bsmrstu/assignment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(pdfData),
+            });
 
-        const data = await response.json();
-        console.log(data)
-        setHtml(data.data?.htmlContent);
-        setBufferData(data.data?.buffer);
+            const data = await response.json();
+            console.log(data)
+            setHtml(data.data?.htmlContent);
+            setBufferData(data.data?.buffer);
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const onSubmit = async (data) => {
@@ -119,7 +123,7 @@ export default function Assignment() {
                                             field === 'student_year' ?
                                                 <select className="form-select" {...register(field)}>
                                                     <option value="">Year</option>
-                                                    {years.map((year) => (
+                                                    {['1st', '2nd', '3rd', '4th'].map((year) => (
                                                         <option key={year} value={year}>
                                                             {year}
                                                         </option>
