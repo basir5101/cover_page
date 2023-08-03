@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer')
 
 const createInvoiceService = async (data) => {
     const { assignment_topic, course_title, course_code, student_name, student_id, student_year, student_semester, student_session, student_department, teacher_name, teacher_position, teacher_department, teacher_university, submission_date } = data;
-    const imageUrl = 'https://cover-page.vercel.app/images/logo/bsmrstu.jpg';
+    const imageUrl = `${process.env.DOMAIN}/images/logo/bsmrstu.jpg`;
     const launchOptions = {
         args: ['--no-sandbox'],
         headless: "new"
@@ -90,7 +90,6 @@ const createInvoiceService = async (data) => {
                                 <div><strong>Session: </strong> ${student_semester} </div>
                                 <div>Department of ${student_department}</div>
                                 <div>Bangabandhu Sheikh Mujibur Rahman
-                                    <br>
                                     Science & Technology University,
                                     <br>
                                     Gopalganj-8100
@@ -101,7 +100,7 @@ const createInvoiceService = async (data) => {
                                 <div> ${teacher_position} </div>
                                 <br>
                                 <br>
-                                <div> ${teacher_department} </div>
+                                <div>Department of ${teacher_department} </div>
                                 <div> ${teacher_university} </div>
                             </td>
                         </tr>
