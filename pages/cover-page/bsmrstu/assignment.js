@@ -105,7 +105,7 @@ export default function Assignment() {
                 </div>
             }
             {
-                !html && !loading && editing &&
+                // !html && !loading && editing &&
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="row">
                         {
