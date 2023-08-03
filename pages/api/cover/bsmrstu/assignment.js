@@ -1,7 +1,7 @@
 
 const pdf = require('html-pdf');
+const puppeteer = require('puppeteer');
 const util = require('util');
-
 
 const createInvoiceService = async (data) => {
     console.log('starting')
@@ -15,6 +15,9 @@ const createInvoiceService = async (data) => {
     //const browser = await puppeteer.launch(launchOptions);
     // const browser = await puppeteer.launch({ headless: "new" });
     // const page = await browser.newPage();
+
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+    const page = await browser.newPage();
 
     const htmlContent =
         `<html>
@@ -116,6 +119,18 @@ const createInvoiceService = async (data) => {
         </html>`
 
     // await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+    await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+
+    const buffer = await page.pdf({
+        format: 'A4',
+        margin: {
+            top: '20px',
+            right: '20px',
+            bottom: '20px',
+            left: '20px'
+        },
+        printBackground: true,
+    });
 
     // const buffer = await page.pdf({
     //     format: 'A4',
@@ -128,17 +143,17 @@ const createInvoiceService = async (data) => {
     //     scale: 0.8, // Adjust this value as needed
     //     printBackground: true,
     // });
-    // await browser.close();
-    const buffer = await new Promise((resolve, reject) => {
-        pdf.create(htmlContent).toBuffer(function (err, buffer) {
-            if (err) {
-                reject(err);
-            } else {
-                console.log('This is a buffer:', Buffer.isBuffer(buffer));
-                resolve(buffer);
-            }
-        });
-    });
+    await browser.close();
+    // const buffer = await new Promise((resolve, reject) => {
+    //     pdf.create(htmlContent).toBuffer(function (err, buffer) {
+    //         if (err) {
+    //             reject(err);
+    //         } else {
+    //             console.log('This is a buffer:', Buffer.isBuffer(buffer));
+    //             resolve(buffer);
+    //         }
+    //     });
+    // });
     // const buffer = await pdf.create(htmlContent).toBuffer(function (err, buffer) {
     //     console.log('This is a buffer:', Buffer.isBuffer(buffer));
     //     return buffer;
