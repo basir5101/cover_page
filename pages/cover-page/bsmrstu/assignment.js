@@ -14,9 +14,20 @@ export default function Assignment() {
     } = useForm()
     const [html, setHtml] = useState("");
     const [bufferData, setBufferData] = useState("");
+
+
     const getHtml = async (pdfData) => {
-        const { data } = await axios.post('/api/cover/bsmrstu/assignment', pdfData);
-        console.log(data.data)
+        // const { data } = await axios.post('/api/cover/bsmrstu/assignment', pdfData);
+        const response = await fetch('/api/cover/bsmrstu/assignment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(pdfData),
+        });
+
+        const data = await response.json();
+        console.log(data)
         setHtml(data.data?.htmlContent);
         setBufferData(data.data?.buffer);
     }
@@ -89,7 +100,8 @@ export default function Assignment() {
                     <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                 </div>
             }
-            {!html && !loading && editing &&
+            {
+                !html && !loading && editing &&
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="row">
                         {
