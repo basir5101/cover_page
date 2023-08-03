@@ -1,7 +1,5 @@
-// const puppeteer = require('puppeteer-core')
-//const puppeteer = require('puppeteer')
-const html_to_pdf = require('html-pdf-node');
-var pdf = require('html-pdf');
+
+const pdf = require('html-pdf');
 const util = require('util');
 
 
@@ -23,7 +21,7 @@ const createInvoiceService = async (data) => {
             <head>            
                 <style>
                     body {
-                        margin: 70px;
+                        margin: 200px 150px;
                         font-family: 'Times New Roman', Times, serif;
                     }
             
