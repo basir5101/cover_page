@@ -1,7 +1,7 @@
-//const puppeteer = require('puppeteer');
 
-const chromium = require("chrome-aws-lambda");
-const playwright = require("playwright-core");
+const pdf = require('html-pdf');
+const puppeteer = require('puppeteer');
+const util = require('util');
 
 const createInvoiceService = async (data) => {
     console.log('starting')
@@ -9,23 +9,8 @@ const createInvoiceService = async (data) => {
     const imageUrl = `${process.env.DOMAIN}/images/logo/bsmrstu.jpg`;
 
 
-    // const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
-    const browser = await playwright.chromium.launch({
-        args: [...chromium.args, "--font-render-hinting=none"], // This way fix rendering issues with specific fonts
-        executablePath:
-            process.env.NODE_ENV === "production"
-                ? await chromium.executablePath
-                : "/usr/local/bin/chromium",
-        headless:
-            process.env.NODE_ENV === "production" ? chromium.headless : true,
-    });
-
-    const context = await browser.newContext()
-    const page = await context.newPage();
-
-    // const context = await browser.newContext();
-
-    //const page = await browser.newPage();
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+    const page = await browser.newPage();
 
     const htmlContent =
         `<html>
@@ -127,8 +112,8 @@ const createInvoiceService = async (data) => {
         </html>`
 
     // await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
-    //await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
-    await page.setContent(htmlContent, { waitUntil: 'networkidle' })
+    await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+
     const buffer = await page.pdf({
         format: 'A4',
         margin: {
@@ -140,32 +125,9 @@ const createInvoiceService = async (data) => {
         printBackground: true,
     });
 
-    // const buffer = await page.pdf({
-    //     format: 'A4',
-    //     margin: {
-    //         top: '20px',
-    //         right: '20px',
-    //         bottom: '20px',
-    //         left: '20px'
-    //     },
-    //     scale: 0.8, // Adjust this value as needed
-    //     printBackground: true,
-    // });
+
     await browser.close();
-    // const buffer = await new Promise((resolve, reject) => {
-    //     pdf.create(htmlContent).toBuffer(function (err, buffer) {
-    //         if (err) {
-    //             reject(err);
-    //         } else {
-    //             console.log('This is a buffer:', Buffer.isBuffer(buffer));
-    //             resolve(buffer);
-    //         }
-    //     });
-    // });
-    // const buffer = await pdf.create(htmlContent).toBuffer(function (err, buffer) {
-    //     console.log('This is a buffer:', Buffer.isBuffer(buffer));
-    //     return buffer;
-    // });
+
     return { buffer, htmlContent }
 }
 
