@@ -1,23 +1,31 @@
+//const puppeteer = require('puppeteer');
 
-const pdf = require('html-pdf');
-const puppeteer = require('puppeteer');
-const util = require('util');
+const chromium = require("chrome-aws-lambda");
+const playwright = require("playwright-core");
 
 const createInvoiceService = async (data) => {
     console.log('starting')
     const { assignment_topic, course_title, course_code, student_name, student_id, student_year, student_semester, student_session, student_department, teacher_name, teacher_position, teacher_department, teacher_university, submission_date } = data;
     const imageUrl = `${process.env.DOMAIN}/images/logo/bsmrstu.jpg`;
-    // const launchOptions = {
-    //     args: ['--no-sandbox'],
-    //     headless: "new"
-    // };
 
-    //const browser = await puppeteer.launch(launchOptions);
-    // const browser = await puppeteer.launch({ headless: "new" });
-    // const page = await browser.newPage();
 
-    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
-    const page = await browser.newPage();
+    // const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+    const browser = await playwright.chromium.launch({
+        args: [...chromium.args, "--font-render-hinting=none"], // This way fix rendering issues with specific fonts
+        executablePath:
+            process.env.NODE_ENV === "production"
+                ? await chromium.executablePath
+                : "/usr/local/bin/chromium",
+        headless:
+            process.env.NODE_ENV === "production" ? chromium.headless : true,
+    });
+
+    const context = await browser.newContext()
+    const page = await context.newPage();
+
+    // const context = await browser.newContext();
+
+    //const page = await browser.newPage();
 
     const htmlContent =
         `<html>
@@ -119,8 +127,8 @@ const createInvoiceService = async (data) => {
         </html>`
 
     // await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
-    await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
-
+    //await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+    await page.setContent(htmlContent, { waitUntil: 'networkidle' })
     const buffer = await page.pdf({
         format: 'A4',
         margin: {
