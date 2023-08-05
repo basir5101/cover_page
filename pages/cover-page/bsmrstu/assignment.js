@@ -19,7 +19,8 @@ export default function Assignment() {
     const getHtml = async (pdfData) => {
         // const { data } = await axios.post('/api/cover/bsmrstu/assignment', pdfData);
         try {
-            const response = await fetch('/api/cover/bsmrstu/assignment', {
+            // const response = await fetch('http://localhost:4000/scrape', {
+            const response = await fetch('https://puppeteer-epm8.onrender.com/scrape', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -82,18 +83,18 @@ export default function Assignment() {
     const fields = [
         'assignment_topic',
         'course_title',
-        'course_code',
-        'student_name',
-        'student_id',
-        'student_year',
-        'student_semester',
-        'student_session',
-        'student_department',
-        'teacher_name',
-        'teacher_position',
-        'teacher_department',
-        'teacher_university',
-        'submission_date'
+        // 'course_code',
+        // 'student_name',
+        // 'student_id',
+        // 'student_year',
+        // 'student_semester',
+        // 'student_session',
+        // 'student_department',
+        // 'teacher_name',
+        // 'teacher_position',
+        // 'teacher_department',
+        // 'teacher_university',
+        // 'submission_date'
     ];
     return (
         <div className='container py-5'>
