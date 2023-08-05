@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form"
 
-export default function Assignment() {
+export default function LabReport() {
     const [loading, setLoading] = useState(false);
     const [editing, setEditing] = useState(true);
 
@@ -19,8 +19,8 @@ export default function Assignment() {
     const getHtml = async (pdfData) => {
         // const { data } = await axios.post('/api/cover/bsmrstu/assignment', pdfData);
         try {
-            // const response = await fetch('http://localhost:4000/bsmrstu/assignment', {
-            const response = await fetch('https://puppeteer-epm8.onrender.com/bsmrstu/assignment', {
+            // const response = await fetch('http://localhost:4000/bsmrstu/lab', {
+            const response = await fetch('https://puppeteer-epm8.onrender.com/bsmrstu/lab', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -81,7 +81,6 @@ export default function Assignment() {
         setBufferData(null);
     }
     const fields = [
-        'assignment_topic',
         'course_title',
         'course_code',
         'student_name',
