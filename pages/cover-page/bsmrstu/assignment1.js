@@ -205,7 +205,7 @@ export default function Assignment1() {
                 </div>
             }
             {
-                editing &&
+                !editing &&
                 <>
                     <PDFDownloadLink style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#de33aa', padding: '5px 20px', textDecoration: 'none', }} document={<Assignment data={assignmentData} />} fileName="fee_acceptance.pdf">
                         {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
