@@ -1,7 +1,25 @@
 import React from 'react'
 import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer';
 
-export default function Assignment() {
+export default function Assignment({ data }) {
+
+    const {
+        assignment_topic = 'Default Assignment Topic',
+        course_title = 'Default Course Title',
+        course_code = 'Default Course Code',
+        student_name = 'Default Student Name',
+        student_id = 'Default Student ID',
+        student_year = 'Default Student Year',
+        student_semester = 'Default Student Semester',
+        student_session = 'Default Student Session',
+        student_department = 'Default Student Department',
+        teacher_name = 'Default Teacher Name',
+        teacher_position = 'Default Teacher Position',
+        teacher_department = 'Default Teacher Department',
+        teacher_university = 'Default Teacher University',
+        submission_date = 'Default Submission Date'
+    } = data;
+
 
     // Load any fonts if needed
     Font.register({
@@ -61,15 +79,9 @@ export default function Assignment() {
             borderBottomWidth: 0,
             marginBottom: 20, // Add some margin to the table
         },
-        tableHeader: {
-            flexDirection: 'row',
-            backgroundColor: '#2d7136',
-            color: 'white',
-            fontSize: 12,
-            width: '100%',
-        },
         tableRow: {
             flexDirection: 'row', // Adjust the flexDirection for table rows
+
         },
         tableCol: {
             flex: 1,
@@ -79,19 +91,10 @@ export default function Assignment() {
             borderTopWidth: 0,
             padding: 8,
         },
-        submissionDate: {
-            fontSize: 12,
-            marginTop: 20,
-        },
-        default: {
-            fontSize: 12,
-        },
-        flex: {
-            display: 'flex',
-        },
-        boldText: {
-            fontWeight: 'bold',
-        },
+        text: {
+            fontSize: 18,
+            marginTop: 5,
+        }
     });
     return (
         <Document>
@@ -104,46 +107,53 @@ export default function Assignment() {
                 </View>
                 <Text style={styles.subTitle}>GOPALGANJ-8100</Text>
                 <View style={styles.hr} />
-                <Text style={styles.assignmentTitle}>Assignment on</Text>
-                <Text style={styles.assignmentTitle}>web development</Text>
+                <Text style={[styles.assignmentTitle, { fontFamily: 'Times-Bold' }]}>Assignment on</Text>
+                <Text style={styles.assignmentTitle}> {assignment_topic} </Text>
                 <View style={styles.courseDetails}>
-                    <Text>Course Title: <Text style={{ fontWeight: 'normal' }}>physics</Text></Text>
-                    <Text>Course Code: <Text style={{ fontWeight: 'normal' }}>phy304</Text></Text>
+                    <Text style={styles.text} >
+                        <Text style={{ fontFamily: 'Times-Bold' }}>Course Title:</Text> {course_title}
+                    </Text>
+                    <Text style={styles.text}>
+                        <Text style={{ fontFamily: 'Times-Bold' }}>Course Code:</Text> {course_code}
+                    </Text>
                 </View>
                 <View style={styles.table}>
-                    <View style={styles.tableRow}>
+                    <View style={[styles.tableRow, { backgroundColor: "#2d7136", color: '#fff', textAlign: 'center', fontFamily: 'Times-Bold' }]}>
                         <Text style={styles.tableCol}>Submitted By</Text>
                         <Text style={styles.tableCol}>Submitted To</Text>
                     </View>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCol}>
-                            <Text>
-                                <Text style={{ fontFamily: 'Times-Bold' }}>Name:</Text> shaon
+                            <Text style={styles.text}>
+                                <Text style={{ fontFamily: 'Times-Bold' }}>Name:</Text> {student_name}
                             </Text>
-                            <Text>
-                                <Text style={{ fontFamily: 'Times-Bold' }}>Student Id:</Text> 18phy040
+                            <Text style={styles.text}>
+                                <Text style={{ fontFamily: 'Times-Bold' }}>Student Id:</Text> {student_id}
                             </Text>
-                            <Text>
-                                <Text style={{ fontFamily: 'Times-Bold' }}>Year:</Text> 18phy040
+                            <Text style={styles.text} >
+                                <Text style={{ fontFamily: 'Times-Bold' }}>Year:</Text> {student_year}
                             </Text>
-                            <Text>
-                                <Text style={{ fontFamily: 'Times-Bold' }}>Session:</Text> 2019-20
+                            <Text style={styles.text} >
+                                <Text style={{ fontFamily: 'Times-Bold' }}>Semester:</Text> {student_semester}
                             </Text>
-                            <Text>Department of physics</Text>
-                            <Text>Bangabandhu Sheikh Mujibur Rahman Science & Technology University,</Text>
-                            <Text>Gopalganj-8100</Text>
+
+                            <Text style={styles.text}>
+                                <Text style={{ fontFamily: 'Times-Bold' }}>Session:</Text> {student_session}
+                            </Text>
+                            <Text style={styles.text}>Department of {student_department}</Text>
+                            <Text style={styles.text}>Bangabandhu Sheikh Mujibur Rahman Science & Technology University, Gopalganj-8100</Text>
                         </View>
                         <View style={styles.tableCol}>
-                            <Text>
-                                <Text style={{ fontFamily: 'Times-Bold' }}>Name:</Text> shaon
+                            <Text style={styles.text}>
+                                <Text style={{ fontFamily: 'Times-Bold' }}>Name:</Text> {teacher_name}
                             </Text>
-                            <Text style={{ marginTop: 3 }}>Lecturer</Text>
-                            <Text style={{ marginTop: 20 }}>Department of Physics</Text>
-                            <Text >Bangabandhu Sheikh Mujibur Rahman Science and Technology University Gopalganj - 8100</Text>
+                            <Text style={[styles.text, { marginTop: 3 }]}> {teacher_position} </Text>
+                            <Text style={[styles.text, { marginTop: 20 }]}>Department of {teacher_department} </Text>
+                            <Text style={styles.text}> {teacher_university} </Text>
                         </View>
                     </View>
                 </View>
-                <Text style={styles.submissionDate}>Date of Submission: 09/08/2023</Text>
+                <Text style={[styles.text, { marginTop: 5 }]}>Date of Submission: {submission_date} </Text>
             </Page>
         </Document>
     )
