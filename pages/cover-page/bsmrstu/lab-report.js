@@ -1,10 +1,18 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react'
+import Assignment from '@/components/pdf/Assignment';
+import dynamic from 'next/dynamic';
 import { useForm } from "react-hook-form"
+const PDFViewer = dynamic(() => import('@react-pdf/renderer').then(mod => mod.PDFViewer), {
+    ssr: false, // Disable server-side rendering for PDFViewer
+});
+const PDFDownloadLink = dynamic(() => import('@react-pdf/renderer').then(mod => mod.PDFDownloadLink), {
+    ssr: false, // Disable server-side rendering for PDFViewer
+});
 
 export default function LabReport() {
     const [loading, setLoading] = useState(false);
     const [editing, setEditing] = useState(true);
+    const [assignmentData, setAssignmentData] = useState({});
 
     const {
         register,
@@ -12,56 +20,22 @@ export default function LabReport() {
         watch,
         formState: { errors },
     } = useForm()
-    const [html, setHtml] = useState("");
     const [bufferData, setBufferData] = useState("");
 
 
-    const getHtml = async (pdfData) => {
-        // const { data } = await axios.post('/api/cover/bsmrstu/assignment', pdfData);
-        try {
-            // const response = await fetch('http://localhost:4000/bsmrstu/lab', {
-            const response = await fetch('https://weak-gold-jackrabbit-cape.cyclic.app/bsmrstu/lab', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(pdfData),
-            });
 
-            const data = await response.json();
-            console.log(data)
-            setHtml(data.data?.htmlContent);
-            setBufferData(data.data?.buffer);
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     const onSubmit = async (data) => {
         setLoading(true);
-        setEditing(false)
-        // Convert the submission date to the desired format "dd-mm-yyyy"
+        setEditing(false);
         const formattedDate = new Date(data.submission_date).toLocaleDateString('en-GB', {
             day: '2-digit',
             month: '2-digit',
             year: 'numeric'
         });
-        await getHtml({ ...data, submission_date: formattedDate });
         setLoading(false);
+        setAssignmentData({ ...data, submission_date: formattedDate })
     }
-    const downloadPDF = () => {
-        const buffer = Buffer.from(bufferData);
-        const blob = new Blob([buffer], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'cover.pdf';
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    };
 
 
 
@@ -81,6 +55,7 @@ export default function LabReport() {
         setBufferData(null);
     }
     const fields = [
+        'assignment_topic',
         'course_title',
         'course_code',
         'student_name',
@@ -95,8 +70,22 @@ export default function LabReport() {
         'teacher_university',
         'submission_date'
     ];
+
+    const styles = {
+        pdfContainer: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100vw',
+            height: '100vh',
+        },
+        pdfViewer: {
+            width: '90%',
+            height: '90%',
+        },
+    };
     return (
-        <div className='container py-5'>
+        <section className='container py-5'>
             <h1 className='my-5' style={{ fontSize: 20 }}>Generate Assignment Cover Page for BSMRSTU</h1>
             {
                 loading && <div className="d-flex align-items-center">
@@ -105,7 +94,7 @@ export default function LabReport() {
                 </div>
             }
             {
-                !html && !loading && editing &&
+                !loading && editing &&
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="row">
                         {
@@ -164,21 +153,26 @@ export default function LabReport() {
                             ))
                         }
                     </div>
-
-
                     <input className='btn btn-success mt-3 px-5' type="submit" value={'Preview'} />
                 </form>
 
             }
 
-            {
-                html && <div>
-                    <div dangerouslySetInnerHTML={{ __html: html }}></div>
 
-                    <button className='btn btn-success mt-4 px-5 me-3' onClick={downloadPDF}>Download PDF</button>
-                    <button className='btn btn-primary mt-4 px-5' onClick={handleReset}>Edit Again</button>
+            {
+                !editing &&
+                <div className='d-flex justify-content-center align-items-center'>
+                    <PDFDownloadLink style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#de33aa', padding: '7px 25px', textDecoration: 'none', }} document={<Assignment data={assignmentData} />} fileName="fee_acceptance.pdf">
+                        {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
+                    </PDFDownloadLink>
+                    <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
+                    <div style={styles.pdfContainer}>
+                        <PDFViewer style={styles.pdfViewer}>
+                            <Assignment data={assignmentData} />
+                        </PDFViewer>
+                    </div>
                 </div>
             }
-        </div>
+        </section>
     )
 }

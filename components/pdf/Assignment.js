@@ -4,20 +4,20 @@ import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/
 export default function Assignment({ data }) {
 
     const {
-        assignment_topic = 'Default Assignment Topic',
-        course_title = 'Default Course Title',
-        course_code = 'Default Course Code',
-        student_name = 'Default Student Name',
-        student_id = 'Default Student ID',
-        student_year = 'Default Student Year',
-        student_semester = 'Default Student Semester',
-        student_session = 'Default Student Session',
-        student_department = 'Default Student Department',
-        teacher_name = 'Default Teacher Name',
-        teacher_position = 'Default Teacher Position',
-        teacher_department = 'Default Teacher Department',
-        teacher_university = 'Default Teacher University',
-        submission_date = 'Default Submission Date'
+        assignment_topic = 'Assignment Topic',
+        course_title = 'Course Title',
+        course_code = 'Course Code',
+        student_name = 'Student Name',
+        student_id = 'Student ID',
+        student_year = 'Student Year',
+        student_semester = 'Student Semester',
+        student_session = 'Student Session',
+        student_department = 'Student Department',
+        teacher_name = 'Teacher Name',
+        teacher_position = 'Teacher Position',
+        teacher_department = 'Teacher Department',
+        teacher_university = 'Teacher University',
+        submission_date = 'Submission Date'
     } = data;
 
 
@@ -54,7 +54,7 @@ export default function Assignment({ data }) {
             textAlign: 'center',
             color: '#2d7136',
             fontSize: 12,
-            marginTop: 20,
+            marginTop: 8,
         },
         hr: {
             borderBottomWidth: 1,
@@ -147,9 +147,9 @@ export default function Assignment({ data }) {
                             <Text style={styles.text}>
                                 <Text style={{ fontFamily: 'Times-Bold' }}>Name:</Text> {teacher_name}
                             </Text>
-                            <Text style={[styles.text, { marginTop: 3 }]}> {teacher_position} </Text>
+                            <Text style={[styles.text, { marginTop: 3 }]}>{teacher_position} </Text>
                             <Text style={[styles.text, { marginTop: 20 }]}>Department of {teacher_department} </Text>
-                            <Text style={styles.text}> {teacher_university} </Text>
+                            <Text style={styles.text}>{teacher_university} </Text>
                         </View>
                     </View>
                 </View>

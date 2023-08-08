@@ -31,7 +31,7 @@ export default function Footer() {
         },
     ]
     return (
-        <footer className='bg-dark text-white py-5'>
+        <footer className='bg-dark text-white py-5 mt-5'>
             <div className=' text-white text-center'>
                 <h3 className='mb-3'>touch with me</h3>
                 <motion.div initial={{ scale: 0.25 }} whileInView={{ scale: 1 }} className='p-12'>
