@@ -20,7 +20,7 @@ export default function LabReport() {
         // const { data } = await axios.post('/api/cover/bsmrstu/assignment', pdfData);
         try {
             // const response = await fetch('http://localhost:4000/bsmrstu/lab', {
-            const response = await fetch('https://puppeteer-epm8.onrender.com/bsmrstu/lab', {
+            const response = await fetch('https://weak-gold-jackrabbit-cape.cyclic.app/bsmrstu/lab', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
