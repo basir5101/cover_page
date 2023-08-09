@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Assignment from '@/components/pdf/Assignment';
 import dynamic from 'next/dynamic';
 import { useForm } from "react-hook-form"
+import LabReport from '@/components/pdf/LabReport';
+import Image from 'next/image';
 const PDFViewer = dynamic(() => import('@react-pdf/renderer').then(mod => mod.PDFViewer), {
     ssr: false, // Disable server-side rendering for PDFViewer
 });
@@ -9,7 +11,7 @@ const PDFDownloadLink = dynamic(() => import('@react-pdf/renderer').then(mod => 
     ssr: false, // Disable server-side rendering for PDFViewer
 });
 
-export default function LabReport() {
+export default function LabCover() {
     const [loading, setLoading] = useState(false);
     const [editing, setEditing] = useState(true);
     const [assignmentData, setAssignmentData] = useState({});
@@ -55,7 +57,6 @@ export default function LabReport() {
         setBufferData(null);
     }
     const fields = [
-        'assignment_topic',
         'course_title',
         'course_code',
         'student_name',
@@ -161,17 +162,22 @@ export default function LabReport() {
 
             {
                 !editing &&
-                <div className='d-flex justify-content-center align-items-center'>
-                    <PDFDownloadLink style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#de33aa', padding: '7px 25px', textDecoration: 'none', }} document={<Assignment data={assignmentData} />} fileName="fee_acceptance.pdf">
-                        {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
-                    </PDFDownloadLink>
-                    <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
-                    <div style={styles.pdfContainer}>
-                        <PDFViewer style={styles.pdfViewer}>
-                            <Assignment data={assignmentData} />
-                        </PDFViewer>
+                <>
+                    <div className='text-center'>
+                        <Image height={500} width={500} src={'/images/done.svg'} alt='assignment cover page generator for bsmrstu' />
                     </div>
-                </div>
+                    <div className='d-flex justify-content-center align-items-center'>
+                        <PDFDownloadLink style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<LabReport data={assignmentData} />} fileName="fee_acceptance.pdf">
+                            {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
+                        </PDFDownloadLink>
+                        <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
+                        {/* <div style={styles.pdfContainer}>
+                        <PDFViewer style={styles.pdfViewer}>
+                            <LabReport data={assignmentData} />
+                        </PDFViewer>
+                    </div> */}
+                    </div>
+                </>
             }
         </section>
     )

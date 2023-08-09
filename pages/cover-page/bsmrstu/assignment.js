@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Assignment from '@/components/pdf/Assignment';
 import dynamic from 'next/dynamic';
 import { useForm } from "react-hook-form"
+import Image from 'next/image';
 const PDFViewer = dynamic(() => import('@react-pdf/renderer').then(mod => mod.PDFViewer), {
     ssr: false, // Disable server-side rendering for PDFViewer
 });
@@ -49,11 +50,7 @@ export default function Assignment1() {
         sessions.push(`${startYear}-${String(endYear).slice(2)}`);
     }
 
-    const handleReset = () => {
-        setEditing(true);
-        setHtml(null);
-        setBufferData(null);
-    }
+
     const fields = [
         'assignment_topic',
         'course_title',
@@ -86,7 +83,7 @@ export default function Assignment1() {
     };
     return (
         <section className='container py-5'>
-            <h1 className='my-5' style={{ fontSize: 20 }}>Generate Assignment Cover Page for BSMRSTU</h1>
+            <h1 className='my-4 text-primary' style={{ fontSize: 20 }}>Generate Assignment Cover Page for BSMRSTU</h1>
             {
                 loading && <div className="d-flex align-items-center">
                     <strong>Loading...</strong>
@@ -104,14 +101,14 @@ export default function Assignment1() {
                                     {
                                         field === 'student_semester' ?
                                             <select className="form-select" {...register(field)}>
-                                                <option value="">Semester</option>
+                                                <option value="">Select Semester</option>
                                                 {
                                                     ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'].map(item => <option key={item} value={item}> {item} </option>)
                                                 }
                                             </select> :
                                             field === 'student_year' ?
                                                 <select className="form-select" {...register(field)}>
-                                                    <option value="">Year</option>
+                                                    <option value="">Select Year</option>
                                                     {['1st', '2nd', '3rd', '4th'].map((year) => (
                                                         <option key={year} value={year}>
                                                             {year}
@@ -120,7 +117,7 @@ export default function Assignment1() {
                                                 </select> :
                                                 field === 'student_session' ?
                                                     <select className="form-select" {...register(field)}>
-                                                        <option value="">Session</option>
+                                                        <option value="">Select Session</option>
                                                         {sessions.map((year) => (
                                                             <option key={year} value={year}>
                                                                 {year}
@@ -129,7 +126,7 @@ export default function Assignment1() {
                                                     </select> :
                                                     field === 'teacher_position' ?
                                                         <select className="form-select" {...register(field)}>
-                                                            <option value="">Teacher Position</option>
+                                                            <option value="">Select Teacher Position</option>
                                                             {[
                                                                 "Lecturer",
                                                                 "Assistant Professor",
@@ -144,8 +141,8 @@ export default function Assignment1() {
                                                         field === 'teacher_university' ?
                                                             <input defaultValue={'Bangabandhu Sheikh Mujibur Rahman Science and Technology University Gopalganj - 8100'} placeholder={field} className='form-control' {...register(`${field}`, { required: true })} /> :
                                                             field === 'submission_date' ?
-                                                                <input type='date' placeholder={'date of submission'} className='form-control' {...register(`${field}`, { required: true })} /> :
-                                                                <input placeholder={field} className='form-control' {...register(`${field}`, { required: true })} />
+                                                                <input type='date' className='form-control' {...register(`${field}`, { required: true })} /> :
+                                                                <input className='form-control' {...register(`${field}`, { required: true })} />
 
                                     }
                                     {errors[field] && <span className='text-danger'>This field is required</span>}
@@ -161,17 +158,22 @@ export default function Assignment1() {
 
             {
                 !editing &&
-                <div className='d-flex justify-content-center align-items-center'>
-                    <PDFDownloadLink style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#de33aa', padding: '7px 25px', textDecoration: 'none', }} document={<Assignment data={assignmentData} />} fileName="fee_acceptance.pdf">
-                        {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
-                    </PDFDownloadLink>
-                    <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
-                    {/* <div style={styles.pdfContainer}>
+                <>
+                    <div className='text-center'>
+                        <Image height={500} width={500} src={'/images/done.svg'} alt='assignment cover page generator for bsmrstu' />
+                    </div>
+                    <div className='d-flex justify-content-center align-items-center'>
+                        <PDFDownloadLink style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<Assignment data={assignmentData} />} fileName={`${assignmentData?.student_id || 'cover'}.pdf`}>
+                            {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
+                        </PDFDownloadLink>
+                        <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
+                        {/* <div style={styles.pdfContainer}>
                         <PDFViewer style={styles.pdfViewer}>
                             <Assignment data={assignmentData} />
                         </PDFViewer>
                     </div> */}
-                </div>
+                    </div>
+                </>
             }
         </section>
     )

@@ -48,6 +48,7 @@ export default function Footer() {
                         }
                     </ul>
                 </motion.div>
+                <div> ©{`${new Date().getFullYear()}`},  Abdul Basir. All rights reserved. </div>
             </div>
         </footer>
     )

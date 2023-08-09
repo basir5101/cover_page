@@ -13,7 +13,7 @@ export default function CampusLists() {
                         <div className='col-sm-6 col-md-4 col-lg-4' key={index}>
                             <Link href={item.url} className="m-1 card nav-link p-3 text-center">
                                 <Image height={180} style={{ width: '100%', height: 'auto' }} width={180} src={item.logo} alt={item.name_details} />
-                                <h5 className='mt-4'> {item.type} Cover Page </h5>
+                                <h5 className='mt-4 text-primary'> {item.type} Cover Page </h5>
                                 <h4> {item.campus_name} </h4>
                             </Link>
                         </div>
