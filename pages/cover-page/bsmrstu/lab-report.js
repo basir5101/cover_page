@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import { useForm } from "react-hook-form"
 import LabReport from '@/components/pdf/LabReport';
 import Image from 'next/image';
+import SEO from '@/components/SEO/SEO';
 const PDFViewer = dynamic(() => import('@react-pdf/renderer').then(mod => mod.PDFViewer), {
     ssr: false, // Disable server-side rendering for PDFViewer
 });
@@ -87,6 +88,10 @@ export default function LabCover() {
     };
     return (
         <section className='container py-5'>
+            <SEO
+                title="Generate Lab report Cover Page for BSMRSTU</h1>"
+                description="Generate Lab report Cover Page for BSMRSTU. Create a new Lab report cover page for BSMRSTU and configure the new Lab report cover page for BSMRSTU"
+            />
             <h1 className='my-5' style={{ fontSize: 20 }}>Generate Assignment Cover Page for BSMRSTU</h1>
             {
                 loading && <div className="d-flex align-items-center">
@@ -143,10 +148,10 @@ export default function LabCover() {
                                                             ))}
                                                         </select> :
                                                         field === 'teacher_university' ?
-                                                            <input defaultValue={'Bangabandhu Sheikh Mujibur Rahman Science and Technology University Gopalganj - 8100'} placeholder={field} className='form-control' {...register(`${field}`, { required: true })} /> :
+                                                            <input defaultValue={'Bangabandhu Sheikh Mujibur Rahman Science and Technology University Gopalganj - 8100'} className='form-control' {...register(`${field}`, { required: true })} /> :
                                                             field === 'submission_date' ?
-                                                                <input type='date' placeholder={'date of submission'} className='form-control' {...register(`${field}`, { required: true })} /> :
-                                                                <input placeholder={field} className='form-control' {...register(`${field}`, { required: true })} />
+                                                                <input type='date' className='form-control' {...register(`${field}`, { required: true })} /> :
+                                                                <input className='form-control' {...register(`${field}`, { required: true })} />
 
                                     }
                                     {errors[field] && <span className='text-danger'>This field is required</span>}
@@ -154,7 +159,7 @@ export default function LabCover() {
                             ))
                         }
                     </div>
-                    <input className='btn btn-success mt-3 px-5' type="submit" value={'Preview'} />
+                    <input className='btn btn-success mt-3 px-5' type="submit" value={'Generate'} />
                 </form>
 
             }
@@ -164,7 +169,7 @@ export default function LabCover() {
                 !editing &&
                 <>
                     <div className='text-center'>
-                        <Image height={500} width={500} src={'/images/done.svg'} alt='assignment cover page generator for bsmrstu' />
+                        <Image height={350} width={350} src={'/images/done.svg'} alt='assignment cover page generator for bsmrstu' />
                     </div>
                     <div className='d-flex justify-content-center align-items-center'>
                         <PDFDownloadLink style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<LabReport data={assignmentData} />} fileName="fee_acceptance.pdf">

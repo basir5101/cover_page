@@ -39,7 +39,7 @@ export default function Footer() {
                     <ul className='d-flex align-items-center justify-content-center'>
                         {
                             contactDetails.map((detail, index) => (
-                                <li className='d-flex mb-3 mx-3' key={index}>
+                                <li className='d-flex mb-3 mx-2' key={index}>
                                     <Link className='border p-3 text-white rounded-circle' target={"_blank"} href={detail.title === 'Email' ? `mailto:${detail.link}` : detail.link}>
                                         {detail.component}
                                     </Link>
@@ -48,7 +48,7 @@ export default function Footer() {
                         }
                     </ul>
                 </motion.div>
-                <div> ©{`${new Date().getFullYear()}`},  Abdul Basir. All rights reserved. </div>
+                <div> ©{`${new Date().getFullYear()}`} coverpagemaker.com. All rights reserved. </div>
             </div>
         </footer>
     )

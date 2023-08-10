@@ -3,6 +3,7 @@ import Assignment from '@/components/pdf/Assignment';
 import dynamic from 'next/dynamic';
 import { useForm } from "react-hook-form"
 import Image from 'next/image';
+import SEO from '@/components/SEO/SEO';
 const PDFViewer = dynamic(() => import('@react-pdf/renderer').then(mod => mod.PDFViewer), {
     ssr: false, // Disable server-side rendering for PDFViewer
 });
@@ -83,6 +84,10 @@ export default function Assignment1() {
     };
     return (
         <section className='container py-5'>
+            <SEO
+                title="Generate Assignment Cover Page for BSMRSTU</h1>"
+                description="Generate Assignment Cover Page for BSMRSTU. Create a new assignment cover page for BSMRSTU and configure the new assignment cover page for BSMRSTU"
+            />
             <h1 className='my-4 text-primary' style={{ fontSize: 20 }}>Generate Assignment Cover Page for BSMRSTU</h1>
             {
                 loading && <div className="d-flex align-items-center">
@@ -150,7 +155,7 @@ export default function Assignment1() {
                             ))
                         }
                     </div>
-                    <input className='btn btn-success mt-3 px-5' type="submit" value={'Preview'} />
+                    <input className='btn btn-success mt-3 px-5' type="submit" value={'Generate'} />
                 </form>
 
             }
