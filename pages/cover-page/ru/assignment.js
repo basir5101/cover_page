@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import Assignment from '@/components/pdf/Assignment';
 import dynamic from 'next/dynamic';
 import { useForm } from "react-hook-form"
 import Image from 'next/image';
 import SEO from '@/components/SEO/SEO';
 import Layout from '@/components/layout/CommonLayout';
-import PDFJNU from '@/components/pdf/JNUPDF';
+import RUPDF from '@/components/pdf/RUPDF';
 const PDFViewer = dynamic(() => import('@react-pdf/renderer').then(mod => mod.PDFViewer), {
     ssr: false, // Disable server-side rendering for PDFViewer
 });
@@ -13,7 +12,7 @@ const PDFDownloadLink = dynamic(() => import('@react-pdf/renderer').then(mod => 
     ssr: false, // Disable server-side rendering for PDFViewer
 });
 
-export default function Assignment1() {
+export default function Assignment() {
     const [loading, setLoading] = useState(false);
     const [editing, setEditing] = useState(true);
     const [assignmentData, setAssignmentData] = useState({});
@@ -55,11 +54,14 @@ export default function Assignment1() {
 
 
     const fields = [
+        'assignment_topic',
         'course_title',
         'course_code',
         'student_name',
         'student_id',
-        'student_batch',
+        'student_year',
+        'student_semester',
+        'student_session',
         'student_department',
         'teacher_name',
         'teacher_position',
@@ -85,10 +87,10 @@ export default function Assignment1() {
         <Layout>
             <section className='container py-5'>
                 <SEO
-                    title="Assignment Cover Page maker for JNU - Jagannath University</h1>"
-                    description="Generate Assignment Cover Page for Jagannath University (JNU). Create a new assignment cover page for Jagannath University and configure the new assignment cover page for JNU"
+                    title="Assignment Cover Page Maker for RU</h1>"
+                    description="Generate Assignment Cover Page for University of Rajshahi. Create a new assignment cover page for RU and configure the new assignment cover page for RU"
                 />
-                <h1 className='my-4 text-primary' style={{ fontSize: 20 }}>Assignment Cover Page - Jagannath University</h1>
+                <h1 className='my-4 text-primary' style={{ fontSize: 20 }}>Assignment Cover Page - University of Rajshahi </h1>
                 {
                     loading && <div className="d-flex align-items-center">
                         <strong>Loading...</strong>
@@ -144,7 +146,7 @@ export default function Assignment1() {
                                                                 ))}
                                                             </select> :
                                                             field === 'teacher_university' ?
-                                                                <input defaultValue={'Jagannath University'} placeholder={field} className='form-control' {...register(`${field}`, { required: true })} /> :
+                                                                <input defaultValue={'Bangabandhu Sheikh Mujibur Rahman Science and Technology University Gopalganj - 8100'} placeholder={field} className='form-control' {...register(`${field}`, { required: true })} /> :
                                                                 field === 'submission_date' ?
                                                                     <input type='date' className='form-control' {...register(`${field}`, { required: true })} /> :
                                                                     <input className='form-control' {...register(`${field}`, { required: true })} />
@@ -162,20 +164,20 @@ export default function Assignment1() {
 
 
                 {
-                    !editing &&
+                    // !editing &&
                     <>
                         <div className='text-center'>
                             <Image height={500} width={500} src={'/images/done.svg'} alt='assignment cover page generator for bsmrstu' />
                         </div>
                         <div className='d-flex justify-content-center align-items-center'>
-                            <PDFDownloadLink style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<PDFJNU data={assignmentData} />} fileName={`${assignmentData?.student_id || 'cover'}.pdf`}>
+                            <PDFDownloadLink style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<RUPDF data={assignmentData} />} fileName={`${assignmentData?.student_id || 'cover'}.pdf`}>
                                 {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
                             </PDFDownloadLink>
                             <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
                         </div>
                         {/* <div style={styles.pdfContainer}>
                             <PDFViewer style={styles.pdfViewer}>
-                                <PDFJNU data={assignmentData} />
+                                <RUPDF data={assignmentData} />
                             </PDFViewer>
                         </div> */}
                     </>
