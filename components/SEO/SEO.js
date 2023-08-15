@@ -5,7 +5,7 @@ import { DefaultSeo } from "./default";
 export default function SEO(props) {
     const router = useRouter();
 
-    const title = props.title || 'generate cover page'
+    const title = props.title || 'Cover Page Maker'
     let summary = props.summary || DefaultSeo.summary;
     const description = props.description || DefaultSeo.description;
 

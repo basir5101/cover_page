@@ -13,4 +13,11 @@ export const campusList = [
         logo: '/images/logo/bsmrstu.jpg',
         url: '/cover-page/bsmrstu/lab-report'
     },
+    {
+        type: 'Assignment',
+        campus_name: 'JNU',
+        name_details: 'Jagannath University',
+        logo: '/images/logo/jnu.png',
+        url: '/cover-page/jnu/assignment'
+    },
 ]
