@@ -15,6 +15,7 @@ const ImageContainer = ({ src, alt, height, width }) => {
                 style={{ height: '100%', width: '100%' }}
                 className={imageLoaded ? 'loaded' : ''}
                 onLoad={() => setImageLoaded(true)}
+            // placeholder='blur'
             // layout="fill"
             // objectFit="cover"
             />

@@ -7,8 +7,8 @@ import ImageContainer from '../library/ImageContainer'
 export default function CampusLists() {
     return (
         <section className='container pt-5'>
-            <div class="headline-container mb-3">
-                <h1 class="headline py-1">Available Cover Pages</h1>
+            <div className="headline-container mb-3">
+                <h1 className="headline py-1">Available Cover Pages</h1>
             </div>
             <div className="row">
                 {

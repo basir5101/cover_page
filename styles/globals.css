@@ -155,9 +155,9 @@ a {
   transition: opacity 0.3s ease-in-out;
 } */
 
-img.loaded {
+/* img.loaded {
   opacity: 1;
-}
+} */
 
 /* CSS for Headline with Gradient and Border */
 .headline-container {
