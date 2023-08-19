@@ -6,6 +6,7 @@ import CampusLists from '@/components/home/CampusLists';
 import { motion } from 'framer-motion';
 import SEO from '@/components/SEO/SEO';
 import Layout from '@/components/layout/CommonLayout';
+import Hero from '@/components/home/Hero';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <Layout>
       <SEO />
+      <Hero />
       <CampusLists />
     </Layout>
   )
