@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 const ImageContainer = ({ src, alt, height, width }) => {
     const [imageLoaded, setImageLoaded] = useState(false);
-    console.log(imageLoaded)
     return (
         <div className="image-container">
             {!imageLoaded && <div className="blur-placeholder"></div>}

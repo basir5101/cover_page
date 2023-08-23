@@ -151,7 +151,7 @@ export default function Form({
 
 
                 {
-                    !editing &&
+                    // !editing &&
                     <>
                         <div className='text-center'>
                             <Image height={500} width={500} src={'/images/done.svg'} alt='assignment cover page generator for bsmrstu' />
