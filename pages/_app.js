@@ -6,13 +6,11 @@ import Script from 'next/script'
 import { useEffect } from 'react';
 
 export default function App({ Component, pageProps }) {
-  useEffect(() => {
-    import("bootstrap/dist/js/bootstrap");
-  }, []);
+
 
 
   useEffect(() => {
-    typeof document !== undefined ? require('bootstrap/dist/js/bootstrap') : null
+    typeof document !== undefined ? require('bootstrap/dist/js/bootstrap.bundle.min.js') : null
   }, [])
   return <>
     <Script
