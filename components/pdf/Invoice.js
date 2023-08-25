@@ -2,22 +2,8 @@ import React from 'react'
 import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer';
 
 export default function Invoice({ data }) {
-    console.log(data.image);
+    console.log(data);
     const {
-        assignment_topic = 'Assignment Topic',
-        course_title = 'Course Title',
-        course_code = 'Course Code',
-        student_name = 'Student Name',
-        student_id = 'Student ID',
-        student_year = 'Student Year',
-        student_semester = 'Student Semester',
-        student_session = 'Student Session',
-        student_department = 'Student Department',
-        teacher_name = 'Teacher Name',
-        teacher_position = 'Teacher Position',
-        teacher_department = 'Teacher Department',
-        teacher_university = 'Teacher University',
-        submission_date = 'Submission Date',
         image = "/logo.png"
     } = data;
 
@@ -31,80 +17,33 @@ export default function Invoice({ data }) {
     });
 
 
-    const invoiceData = {
-        type: 'invoice',
-        from: 'Abdul Basir',
-        to: "Abdul Basir to",
-        ship_to: 'sontospur bangabari',
-        number: 1,
-        purchase_order: 'sdf',
-        date: '2023-08-21',
-        payment_terms: 'Net 30',
-        due_date: '2023-09-20',
-        due_balance: 323,
-        custom_fields: [
-            { name: 'Field 1', value: 'Value 1' },
-            { name: 'Field 2', value: 'Value 2' }
+
+    const {
+        user_company = 'user company',
+        user_name = 'default name',
+        company_address = 'default address',
+        city_state = 'default city',
+        title = 'INVOICE',
+        bill_to_tile = 'Bill To: ',
+        client_company = 'default client company',
+        client_address = 'default client address',
+        client_city_state = 'default client city',
+        invoice_number_title = 'INVOICE#',
+        invoice_number = '001',
+        invoice_date_title = 'Invoice date: ',
+        invoice_date = '08/25/2023',
+        due_date_tile = 'Due Date: ',
+        due_date = '08/25/2023',
+        items = [
+            { name: 'item', quantity: 4, rate: 330 },
         ],
-        items: [
-            {
-                quantity: 2,
-                name: 'Product A',
-                description: 'Description of Product A',
-                unit_cost: 50,
-                amount: 100
-            },
-            {
-                quantity: 3,
-                name: 'Product B',
-                description: 'Description of Product B',
-                unit_cost: 30,
-                amount: 90
-            }
-        ],
-        currency: 'usd',
-        fields: {
-            discounts: true,
-            tax: '10%',
-            shipping: true
-        },
-        discounts: 15,
-        tax: 19,
-        shipping: 8,
-        amount_paid: 180,
-        notes: 'Additional notes for the invoice.',
-        terms: 'These are the terms and conditions.',
-        payment_methods: ['Credit Card', 'Bank Transfer'],
-        header: 'INVOICE',
-        credit_note_header: 'CREDIT NOTE',
-        credit_note_number_title: '#',
-        invoice_number_title: '#',
-        invoice_number: '3434',
-        to_title: 'Bill To',
-        ship_to_title: 'Ship To',
-        date_title: 'Invoice Date',
-        payment_terms_title: 'Payment Terms',
-        due_date_title: 'Due Date',
-        purchase_order_title: 'PO Number',
-        item_header: 'Item',
-        quantity_header: 'Quantity',
-        unit_cost_header: 'Rate',
-        amount_header: 'Amount',
-        subtotal_title: 'Subtotal',
-        discounts_title: 'Discount',
-        tax_title: 'Tax',
-        shipping_title: 'Shipping',
-        total_title: 'Total',
-        amount_paid_title: 'Amount Paid',
-        balance_title: 'Balance Due',
-        terms_title: 'Terms',
-        notes_title: 'Notes',
-        draft: true,
-        id: 1,
-        subtotal: 190,
-        total: 193.9,
-        balance: 13.9
-    };
+        sub_total_title = 'default sub total title',
+        tax_title = 'Tax',
+        tax = 0,
+        total_title = 'Total',
+        notes = 'default notes',
+        terms = 'default terms'
+    } = data;
 
 
     // Create styles
@@ -117,10 +56,9 @@ export default function Invoice({ data }) {
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
-            marginTop: 10,
         },
         logo: {
-            height: 120,
+            height: 80,
         },
         hr: {
             borderBottomWidth: 1,
@@ -170,60 +108,72 @@ export default function Invoice({ data }) {
                 <View style={styles.table}>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCol}>
-                            <View style={styles.logoContainer}>
-                                <Image style={styles.logo} src={image} alt="logo" />
-                            </View>
-                            <Text style={[styles.text, styles.bold]}>{invoiceData.from} </Text>
-                            <View style={styles.table}>
-                                <View style={styles.tableRow}>
-                                    <View style={[styles.tableCol, styles.col70]}>
-                                        <Text style={styles.text}> Bill To </Text>
-                                        <Text style={styles.text}> {invoiceData.to} </Text>
-                                    </View>
-                                    <View style={[styles.tableCol, styles.col30]}>
-                                        <Text style={styles.text}>Ship To </Text>
-                                        <Text style={styles.text}> {invoiceData.ship_to} </Text>
-
-                                    </View>
+                            {
+                                image && <View style={styles.logoContainer}>
+                                    <Image style={styles.logo} src={image} alt="logo" />
                                 </View>
-                            </View>
+                            }
+                            <Text style={[styles.text, styles.bold]}>{user_company} </Text>
+                            <Text style={styles.text}>{user_name} </Text>
+                            <Text style={styles.text}>{company_address} </Text>
+                            <Text style={styles.text}>{city_state} </Text>
                         </View>
-                        <View style={[styles.tableCol, { direction: 'rtl' }]}>
-                            <Text style={styles.title}>{invoiceData.header} </Text>
-                            <Text style={styles.text}>{invoiceData.invoice_number_title} {invoiceData.invoice_number} </Text>
-                            <Text style={[styles.text, { marginTop: '10px' }]}>Date: {invoiceData.date} </Text>
-                            <Text style={[styles.text]}>Payment terms: {invoiceData.terms} </Text>
-                            <Text style={[styles.text]}>Due date: {invoiceData.due_date} </Text>
-                            <Text style={[styles.text]}>balance due: {invoiceData.due_balance} </Text>
+                        <View style={[styles.tableCol, {
+                            flexDirection: 'column',
+                            alignItems: 'flex-end'
+                        }]}>
+                            <Text style={styles.title}>{title} </Text>
+                            <Text style={styles.text}>{invoice_number_title} {invoice_number} </Text>
                         </View>
                     </View>
 
                 </View>
+                <View style={styles.table}>
+                    <View style={styles.tableRow}>
+                        <View style={[styles.tableCol, styles.col70]}>
+                            <Text style={[styles.text, styles.bold]}> {bill_to_tile} </Text>
+                            <Text style={styles.text}> {client_company} </Text>
+                            <Text style={styles.text}> {client_address} </Text>
+                            <Text style={styles.text}> {client_city_state} </Text>
+                        </View>
+                        <View style={[styles.tableCol, styles.col30]}>
+                            <Text style={[styles.text, { marginTop: '10px' }]}>{invoice_date_title} {invoice_date} </Text>
+                            <Text style={[styles.text]}>{due_date_tile} {due_date} </Text>
+                        </View>
+                    </View>
+                </View>
                 <View style={[styles.table, { textAlign: 'center' }]}>
                     <View style={styles.tableRow}>
+                        <View style={[styles.tableCol]}>
+                            <Text style={[styles.text, { backgroundColor: '#111', textAlign: 'center', color: '#fff' }]}> # </Text>
+
+                            {
+                                items.map((item, index) => <Text key={index} style={styles.text}> {index + 1} </Text>)
+                            }
+                        </View>
                         <View style={[styles.tableCol]}>
                             <Text style={[styles.text, { backgroundColor: '#111', textAlign: 'center', color: '#fff' }]}> Item </Text>
 
                             {
-                                invoiceData.items.map((item, index) => <Text key={index} style={styles.text}> {item.name} </Text>)
+                                items.map((item, index) => <Text key={index} style={styles.text}> {item.name} </Text>)
                             }
                         </View>
                         <View style={[styles.tableCol]}>
                             <Text style={[styles.text, { backgroundColor: '#111', textAlign: 'center', color: '#fff' }]}> Quantity </Text>
                             {
-                                invoiceData.items.map((item, index) => <Text key={index} style={styles.text}> {item.quantity} </Text>)
+                                items.map((item, index) => <Text key={index} style={styles.text}> {item.quantity} </Text>)
                             }
                         </View>
                         <View style={[styles.tableCol]}>
                             <Text style={[styles.text, { backgroundColor: '#111', textAlign: 'center', color: '#fff' }]}> rate </Text>
                             {
-                                invoiceData.items.map((item, index) => <Text key={index} style={styles.text}> {item.unit_cost} </Text>)
+                                items.map((item, index) => <Text key={index} style={styles.text}> {item.rate} </Text>)
                             }
                         </View>
                         <View style={[styles.tableCol]}>
                             <Text style={[styles.text, { backgroundColor: '#111', textAlign: 'center', color: '#fff' }]}> amount </Text>
                             {
-                                invoiceData.items.map((item, index) => <Text key={index} style={styles.text}> {item.amount} </Text>)
+                                items.map((item, index) => <Text key={index} style={styles.text}> {item.quantity * item.rate} </Text>)
                             }
                         </View>
                     </View>
@@ -233,13 +183,22 @@ export default function Invoice({ data }) {
                         <View style={[styles.tableCol]}>
                         </View>
                         <View style={[styles.tableCol, styles.rightAlignedColumn]}>
-                            <Text style={[styles.text, { textAlign: 'right' }]}> Subtotal:  {invoiceData.subtotal} </Text>
-                            <Text style={styles.text}> Total:  {invoiceData.total} </Text>
-                            <Text style={styles.text}> Amount Paid:  {invoiceData.amount_paid} </Text>
+                            <Text style={[styles.text, { textAlign: 'right' }]}> Sub total:  {
+                                items.map(item => item.quantity * item.rate).reduce((total, subtotal) => total + subtotal, 0)
+                            } </Text>
+                            <Text style={styles.text}> Tax {`(${tax}%)`}:  {
+                                ((items.map(item => item.quantity * item.rate).reduce((total, subtotal) => total + subtotal, 0) * tax) / 100).toFixed(2)
+                            } </Text>
+                            <Text style={styles.text}> {total_title}: {
+                                Number(((items.map(item => item.quantity * item.rate).reduce((total, subtotal) => total + subtotal, 0) * tax) / 100).toFixed(2)) + items.map(item => item.quantity * item.rate).reduce((total, subtotal) => total + subtotal, 0)
+                            } </Text>
                         </View>
                     </View>
                 </View>
-                <Text style={[styles.text, { marginTop: 5 }]}>Date of Submission: {submission_date} </Text>
+                <Text style={[styles.text, { marginTop: 5 }, styles.bold]}> Notes: </Text>
+                <Text style={[styles.text]}> {notes} </Text>
+                <Text style={[styles.text, { marginTop: 15 }, styles.bold]}> Terms and Conditions: </Text>
+                <Text style={[styles.text]}> {terms} </Text>
             </Page>
         </Document>
     )

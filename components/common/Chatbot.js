@@ -30,6 +30,7 @@
 //import "./styles.css";
 import { useState, useEffect } from "react";
 import { useAnimate, stagger, motion } from "framer-motion";
+import { MessageSquare } from "react-feather";
 
 const staggerMenuItems = stagger(0.1, { startDelay: 0.15 });
 
@@ -114,7 +115,7 @@ export default function ChatBot() {
                 whileTap={{ scale: 0.97 }}
                 onClick={() => setIsOpen(!isOpen)}
             >
-                Message Me
+                <MessageSquare />
                 <div className="arrow" style={{ transformOrigin: "50% 55%" }}>
                     <svg width="15" height="15" viewBox="0 0 20 20">
                         <path d="M0 7 L 20 7 L 10 16" />

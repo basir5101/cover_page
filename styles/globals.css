@@ -177,7 +177,7 @@ a {
   z-index: 1;
 }
 
-.headline::before {
+/* .headline::before {
   content: "";
   position: absolute;
   left: 0;
@@ -187,4 +187,4 @@ a {
   height: 100%;
   background-color: #007bff;
   z-index: -1;
-}
+} */
