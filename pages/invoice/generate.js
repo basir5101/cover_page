@@ -322,7 +322,7 @@ export default function Generate() {
                     </form>
                 }
                 {
-                    // !editing &&
+                    !editing &&
                     <>
                         <div className='text-center'>
                             <Image height={500} width={500} src={'/images/done.svg'} alt='free invoice generator' />
@@ -332,11 +332,11 @@ export default function Generate() {
                                 {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
                             </PDFDownloadLink>
                             <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
-                            <div style={styles.pdfContainer}>
+                            {/* <div style={styles.pdfContainer}>
                                 <PDFViewer style={styles.pdfViewer}>
                                     <Invoice data={invoiceData} />
                                 </PDFViewer>
-                            </div>
+                            </div> */}
                         </div>
                     </>
                 }
