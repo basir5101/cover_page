@@ -76,6 +76,7 @@ export default function Generate() {
     }
 
     const handleAddItem = (e) => {
+        e.preventDefault();
         const newItems = [...items];
         newItems.push({
             name: 'item',
@@ -251,7 +252,7 @@ export default function Generate() {
                                 }
                             </tbody>
                         </table>
-                        <button onClick={handleAddItem} className="btn mt-3 btn-success">+add item</button>
+                        <button onClick={(e) => handleAddItem(e)} className="btn mt-3 btn-success">+add item</button>
                         <div className="row">
                             <div className="col-md-7">
                             </div>
@@ -321,7 +322,7 @@ export default function Generate() {
                     </form>
                 }
                 {
-                    !editing &&
+                    // !editing &&
                     <>
                         <div className='text-center'>
                             <Image height={500} width={500} src={'/images/done.svg'} alt='free invoice generator' />
@@ -331,11 +332,11 @@ export default function Generate() {
                                 {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
                             </PDFDownloadLink>
                             <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
-                            {/* <div style={styles.pdfContainer}>
-                        <PDFViewer style={styles.pdfViewer}>
-                            <Invoice data={invoiceData} />
-                        </PDFViewer>
-                    </div> */}
+                            <div style={styles.pdfContainer}>
+                                <PDFViewer style={styles.pdfViewer}>
+                                    <Invoice data={invoiceData} />
+                                </PDFViewer>
+                            </div>
                         </div>
                     </>
                 }

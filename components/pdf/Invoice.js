@@ -42,7 +42,8 @@ export default function Invoice({ data }) {
         tax = 0,
         total_title = 'Total',
         notes = 'default notes',
-        terms = 'default terms'
+        terms = 'default terms',
+        currency = '',
     } = data;
 
 
@@ -191,7 +192,7 @@ export default function Invoice({ data }) {
                             } </Text>
                             <Text style={styles.text}> {total_title}: {
                                 Number(((items.map(item => item.quantity * item.rate).reduce((total, subtotal) => total + subtotal, 0) * tax) / 100).toFixed(2)) + items.map(item => item.quantity * item.rate).reduce((total, subtotal) => total + subtotal, 0)
-                            } </Text>
+                            }  {`(${currency})`} </Text>
                         </View>
                     </View>
                 </View>

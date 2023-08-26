@@ -77,7 +77,10 @@ export default function Form({
         <Layout>
             <section className='container py-5'>
 
-                <h1 className='my-4 text-primary' style={{ fontSize: 20 }}> {title} </h1>
+                <h1 className='my-4 text-primary' style={{ fontSize: '2rem' }}> {title} </h1>
+                <div className='mb-3 border border-danger px-2 border-round text-center d-inline-block'>
+                    <span className="fw-bold">Note: </span> Please use chrome browser for best experience.
+                </div>
                 {
                     loading && <div className="d-flex align-items-center">
                         <strong>Loading...</strong>
@@ -151,7 +154,7 @@ export default function Form({
 
 
                 {
-                    // !editing &&
+                    !editing &&
                     <>
                         <div className='text-center'>
                             <Image height={500} width={500} src={'/images/done.svg'} alt='assignment cover page generator for bsmrstu' />

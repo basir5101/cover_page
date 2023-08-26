@@ -90,7 +90,10 @@ export default function Assignment1() {
                     title="Generate Assignment Cover Page for BSMRSTU</h1>"
                     description="Generate Assignment Cover Page for BSMRSTU. Create a new assignment cover page for BSMRSTU and configure the new assignment cover page for BSMRSTU"
                 />
-                <h1 className='my-4 text-primary' style={{ fontSize: 20 }}>Generate Assignment Cover Page for BSMRSTU</h1>
+                <h1 className='my-4 text-primary' style={{ fontSize: '2.3 rem' }}>Generate Assignment Cover Page for BSMRSTU</h1>
+                <div className='mb-3 border border-danger px-2 border-round text-center d-inline-block'>
+                    <span className="fw-bold">Note: </span> Please use chrome browser for best experience.
+                </div>
                 {
                     loading && <div className="d-flex align-items-center">
                         <strong>Loading...</strong>
