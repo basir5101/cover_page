@@ -63,7 +63,7 @@ export default function Assignment({ data }) {
         },
         assignmentTitle: {
             textAlign: 'center',
-            fontSize: 15,
+            fontSize: 17,
             marginTop: 5,
         },
         courseDetails: {
@@ -92,7 +92,7 @@ export default function Assignment({ data }) {
             padding: 8,
         },
         text: {
-            fontSize: 18,
+            fontSize: 17,
             marginTop: 5,
         }
     });
@@ -119,8 +119,8 @@ export default function Assignment({ data }) {
                 </View>
                 <View style={styles.table}>
                     <View style={[styles.tableRow, { backgroundColor: "#2d7136", color: '#fff', textAlign: 'center', fontFamily: 'Times-Bold' }]}>
-                        <Text style={styles.tableCol}>Submitted By</Text>
-                        <Text style={styles.tableCol}>Submitted To</Text>
+                        <Text style={[styles.tableCol, { fontSize: 17 }]}>Submitted By</Text>
+                        <Text style={[styles.tableCol, { fontSize: 17 }]}>Submitted To</Text>
                     </View>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCol}>

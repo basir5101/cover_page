@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Assignment from '@/components/pdf/Assignment';
 import dynamic from 'next/dynamic';
 import { useForm } from "react-hook-form"
@@ -22,11 +22,18 @@ export default function Assignment1() {
         handleSubmit,
         watch,
         formState: { errors },
-    } = useForm()
+    } = useForm({ assignmentData })
     const [bufferData, setBufferData] = useState("");
 
 
+    useEffect(() => {
+        try {
+            const assignment_data = localStorage.getItem('assignment_data')
+            setAssignmentData(JSON.parse(assignment_data) || {});
+        } catch (error) {
 
+        }
+    }, [])
 
     const onSubmit = async (data) => {
         setLoading(true);
@@ -38,6 +45,7 @@ export default function Assignment1() {
         });
         setLoading(false);
         setAssignmentData({ ...data, submission_date: formattedDate })
+        localStorage.setItem('assignment_data', JSON.stringify({ ...data, submission_date: formattedDate }))
     }
 
 
@@ -110,14 +118,14 @@ export default function Assignment1() {
                                         <label htmlFor={field}>{field.split('_').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</label>
                                         {
                                             field === 'student_semester' ?
-                                                <select className="form-select" {...register(field)}>
+                                                <select defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
                                                     <option value="">Select Semester</option>
                                                     {
-                                                        ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'].map(item => <option key={item} value={item}> {item} </option>)
+                                                        ['1st', '2nd', '3rd'].map(item => <option key={item} value={item}> {item} </option>)
                                                     }
                                                 </select> :
                                                 field === 'student_year' ?
-                                                    <select className="form-select" {...register(field)}>
+                                                    <select defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
                                                         <option value="">Select Year</option>
                                                         {['1st', '2nd', '3rd', '4th'].map((year) => (
                                                             <option key={year} value={year}>
@@ -126,7 +134,7 @@ export default function Assignment1() {
                                                         ))}
                                                     </select> :
                                                     field === 'student_session' ?
-                                                        <select className="form-select" {...register(field)}>
+                                                        <select defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
                                                             <option value="">Select Session</option>
                                                             {sessions.map((year) => (
                                                                 <option key={year} value={year}>
@@ -135,7 +143,7 @@ export default function Assignment1() {
                                                             ))}
                                                         </select> :
                                                         field === 'teacher_position' ?
-                                                            <select className="form-select" {...register(field)}>
+                                                            <select defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
                                                                 <option value="">Select Teacher Position</option>
                                                                 {[
                                                                     "Lecturer",
@@ -151,8 +159,8 @@ export default function Assignment1() {
                                                             field === 'teacher_university' ?
                                                                 <input defaultValue={'Bangabandhu Sheikh Mujibur Rahman Science and Technology University Gopalganj - 8100'} placeholder={field} className='form-control' {...register(`${field}`, { required: true })} /> :
                                                                 field === 'submission_date' ?
-                                                                    <input type='date' className='form-control' {...register(`${field}`, { required: true })} /> :
-                                                                    <input className='form-control' {...register(`${field}`, { required: true })} />
+                                                                    <input defaultValue={assignmentData[field]} type='date' className='form-control' {...register(`${field}`, { required: true })} /> :
+                                                                    <input defaultValue={assignmentData[field]} className='form-control' {...register(`${field}`, { required: true })} />
 
                                         }
                                         {errors[field] && <span className='text-danger'>This field is required</span>}
@@ -160,7 +168,7 @@ export default function Assignment1() {
                                 ))
                             }
                         </div>
-                        <input className='btn btn-success mt-3 px-5' type="submit" value={'Generate'} />
+                        <input className='btn btn-success mt-3 px-5 bounce-btn' type="submit" value={'Generate'} />
                     </form>
 
                 }
@@ -173,15 +181,15 @@ export default function Assignment1() {
                             <Image height={500} width={500} src={'/images/done.svg'} alt='assignment cover page generator for bsmrstu' />
                         </div>
                         <div className='d-flex justify-content-center align-items-center'>
-                            <PDFDownloadLink style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<Assignment data={assignmentData} />} fileName={`${assignmentData?.student_id || 'cover'}.pdf`}>
+                            <PDFDownloadLink className='bounce-btn' style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<Assignment data={assignmentData} />} fileName={`${assignmentData?.student_id || 'cover'}.pdf`}>
                                 {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
                             </PDFDownloadLink>
                             <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
                             {/* <div style={styles.pdfContainer}>
-                        <PDFViewer style={styles.pdfViewer}>
-                            <Assignment data={assignmentData} />
-                        </PDFViewer>
-                    </div> */}
+                                <PDFViewer style={styles.pdfViewer}>
+                                    <Assignment data={assignmentData} />
+                                </PDFViewer>
+                            </div> */}
                         </div>
                     </>
                 }

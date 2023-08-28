@@ -5,7 +5,7 @@ const nextConfig = {
     EMAIL: process.env.EMAIL || "basir.bsmrstu@gmail.com",
     PASSWORD: process.env.PASSWORD || "nifxlabliyvfwyxh",
     DOMAIN: process.env.DOMAIN || "https://www.coverpagemaker.com",
-    NEXTAUTH_URL: process.env.NEXTAUTH_URL || "https://cover-page.vercel.app",
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL || "https://www.coverpagemaker.com",
   }
 }
 

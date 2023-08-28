@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }) {
     typeof document !== undefined ? require('bootstrap/dist/js/bootstrap.bundle.min.js') : null
   }, [])
   return <>
-    <Script
+    {/* <Script
       id="Adsense-id"
       data-ad-client='ca-pub-5411529356815327'
       async
@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }) {
       onError={(e) => { console.error('adsense failed to load', e) }}
       src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       crossorigin="anonymous"
-    />
+    /> */}
     <Component {...pageProps} />
   </>
 }
