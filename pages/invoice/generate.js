@@ -39,14 +39,15 @@ export default function Generate() {
         setEditing(false)
     }
 
-    console.log(watch("example"))
 
 
-    const handleButtonClick = () => {
+    const handleButtonClick = (e) => {
+        e.preventDefault();
         fileInputRef.current.click();
     };
 
     const handleFileChange = (e) => {
+        e.preventDefault();
         const selectedFile = e.target.files[0];
         if (selectedFile && selectedFile.type.startsWith('image/')) {
             setSelectedImage(URL.createObjectURL(selectedFile));
@@ -69,6 +70,7 @@ export default function Generate() {
     };
 
     const handleItems = (e, index) => {
+        e.preventDefault();
         const { name, value } = e.target;
         let newItems = [...items];
         newItems[index][name] = value;
@@ -86,6 +88,7 @@ export default function Generate() {
         setItems(newItems)
     }
     const handleRemoveItem = (e, index) => {
+        e.preventDefault();
         const newItems = [...items];
         newItems.splice(index, 1);
         setItems(newItems);
