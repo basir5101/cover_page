@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Assignment from '@/components/pdf/Assignment';
 import dynamic from 'next/dynamic';
 import { useForm } from "react-hook-form"
@@ -17,16 +17,24 @@ export default function LabCover() {
     const [loading, setLoading] = useState(false);
     const [editing, setEditing] = useState(true);
     const [assignmentData, setAssignmentData] = useState({});
-
+    const [client, setClient] = useState(false)
     const {
         register,
         handleSubmit,
         watch,
         formState: { errors },
-    } = useForm()
-    const [bufferData, setBufferData] = useState("");
+    } = useForm({ ...assignmentData })
 
+    useEffect(() => {
+        try {
+            const assignment_data = localStorage.getItem('assignment_data')
+            setAssignmentData(JSON.parse(assignment_data) || {});
+            setClient(true)
+        } catch (error) {
+            setClient(true)
 
+        }
+    }, [])
 
 
     const onSubmit = async (data) => {
@@ -39,6 +47,8 @@ export default function LabCover() {
         });
         setLoading(false);
         setAssignmentData({ ...data, submission_date: formattedDate })
+        localStorage.setItem('assignment_data', JSON.stringify({ ...data, submission_date: formattedDate }))
+
     }
 
 
@@ -53,11 +63,7 @@ export default function LabCover() {
         sessions.push(`${startYear}-${String(endYear).slice(2)}`);
     }
 
-    const handleReset = () => {
-        setEditing(true);
-        setHtml(null);
-        setBufferData(null);
-    }
+  
     const fields = [
         'course_title',
         'course_code',
@@ -94,7 +100,7 @@ export default function LabCover() {
                     title="Generate Lab report Cover Page for BSMRSTU</h1>"
                     description="Generate Lab report Cover Page for BSMRSTU. Create a new Lab report cover page for BSMRSTU and configure the new Lab report cover page for BSMRSTU"
                 />
-                <h1 className='my-5' style={{ fontSize: 20 }}>Generate Assignment Cover Page for BSMRSTU</h1>
+                <h1 className='my-4 text-primary' style={{ fontSize: '2.3 rem' }}>Generate Lab Report Cover Page for BSMRSTU</h1>
                 {
                     loading && <div className="d-flex align-items-center">
                         <strong>Loading...</strong>
@@ -102,7 +108,7 @@ export default function LabCover() {
                     </div>
                 }
                 {
-                    !loading && editing &&
+                    !loading && editing && client &&
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="row">
                             {
@@ -111,14 +117,14 @@ export default function LabCover() {
                                         <label htmlFor={field}>{field.split('_').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</label>
                                         {
                                             field === 'student_semester' ?
-                                                <select className="form-select" {...register(field)}>
+                                                <select defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
                                                     <option value="">Semester</option>
                                                     {
                                                         ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'].map(item => <option key={item} value={item}> {item} </option>)
                                                     }
                                                 </select> :
                                                 field === 'student_year' ?
-                                                    <select className="form-select" {...register(field)}>
+                                                    <select defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
                                                         <option value="">Year</option>
                                                         {['1st', '2nd', '3rd', '4th'].map((year) => (
                                                             <option key={year} value={year}>
@@ -127,7 +133,7 @@ export default function LabCover() {
                                                         ))}
                                                     </select> :
                                                     field === 'student_session' ?
-                                                        <select className="form-select" {...register(field)}>
+                                                        <select defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
                                                             <option value="">Session</option>
                                                             {sessions.map((year) => (
                                                                 <option key={year} value={year}>
@@ -136,7 +142,7 @@ export default function LabCover() {
                                                             ))}
                                                         </select> :
                                                         field === 'teacher_position' ?
-                                                            <select className="form-select" {...register(field)}>
+                                                            <select defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
                                                                 <option value="">Teacher Position</option>
                                                                 {[
                                                                     "Lecturer",
@@ -152,8 +158,8 @@ export default function LabCover() {
                                                             field === 'teacher_university' ?
                                                                 <input defaultValue={'Bangabandhu Sheikh Mujibur Rahman Science and Technology University Gopalganj - 8100'} className='form-control' {...register(`${field}`, { required: true })} /> :
                                                                 field === 'submission_date' ?
-                                                                    <input type='date' className='form-control' {...register(`${field}`, { required: true })} /> :
-                                                                    <input className='form-control' {...register(`${field}`, { required: true })} />
+                                                                    <input defaultValue={assignmentData[field]} type='date' className='form-control' {...register(`${field}`, { required: true })} /> :
+                                                                    <input defaultValue={assignmentData[field]} className='form-control' {...register(`${field}`, { required: true })} />
 
                                         }
                                         {errors[field] && <span className='text-danger'>This field is required</span>}
