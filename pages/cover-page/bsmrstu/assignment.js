@@ -117,17 +117,17 @@ export default function Assignment1() {
                             {
                                 fields.map(field => (
                                     <div className='col-md-4 mb-3' key={field}>
-                                        <motion.label initial={{x:150, opacity: 0.1}} whileInView={{x: 0, opacity: 1}} htmlFor={field}>{field.split('_').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</motion.label>
+                                        <motion.label initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} htmlFor={field}>{field.split('_').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</motion.label>
                                         {
                                             field === 'student_semester' ?
-                                                <motion.select initial={{x:150, opacity: 0.1}} whileInView={{x: 0, opacity: 1}} defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
+                                                <motion.select initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
                                                     <option value="">Select Semester</option>
                                                     {
                                                         ['1st', '2nd', '3rd'].map(item => <option key={item} value={item}> {item} </option>)
                                                     }
                                                 </motion.select> :
                                                 field === 'student_year' ?
-                                                    <motion.select initial={{x:150, opacity: 0.1}} whileInView={{x: 0, opacity: 1}} defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
+                                                    <motion.select initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
                                                         <option value="">Select Year</option>
                                                         {['1st', '2nd', '3rd', '4th'].map((year) => (
                                                             <option key={year} value={year}>
@@ -136,7 +136,7 @@ export default function Assignment1() {
                                                         ))}
                                                     </motion.select> :
                                                     field === 'student_session' ?
-                                                        <motion.select initial={{x:150, opacity: 0.1}} whileInView={{x: 0, opacity: 1}} defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
+                                                        <motion.select initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
                                                             <option value="">Select Session</option>
                                                             {sessions.map((year) => (
                                                                 <option key={year} value={year}>
@@ -145,7 +145,7 @@ export default function Assignment1() {
                                                             ))}
                                                         </motion.select> :
                                                         field === 'teacher_position' ?
-                                                            <motion.select initial={{x:150, opacity: 0.1}} whileInView={{x: 0, opacity: 1}} defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
+                                                            <motion.select initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={assignmentData[field]} className="form-select" {...register(field)}>
                                                                 <option value="">Select Teacher Position</option>
                                                                 {[
                                                                     "Lecturer",
@@ -159,10 +159,10 @@ export default function Assignment1() {
                                                                 ))}
                                                             </motion.select> :
                                                             field === 'teacher_university' ?
-                                                                <motion.input initial={{x:150, opacity: 0.1}} whileInView={{x: 0, opacity: 1}} defaultValue={'Bangabandhu Sheikh Mujibur Rahman Science and Technology University Gopalganj - 8100'} placeholder={field} className='form-control' {...register(`${field}`, { required: true })} /> :
+                                                                <motion.input initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={'Bangabandhu Sheikh Mujibur Rahman Science and Technology University, Gopalganj - 8100'} placeholder={field} className='form-control' {...register(`${field}`, { required: true })} /> :
                                                                 field === 'submission_date' ?
-                                                                    <motion.input initial={{x:150, opacity: 0.1}} whileInView={{x: 0, opacity: 1}} defaultValue={assignmentData[field]} type='date' className='form-control' {...register(`${field}`, { required: true })} /> :
-                                                                    <motion.input initial={{x:150, opacity: 0.1}} whileInView={{x: 0, opacity: 1}} defaultValue={assignmentData[field]} className='form-control' {...register(`${field}`, { required: true })} />
+                                                                    <motion.input initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={assignmentData[field]} type='date' className='form-control' {...register(`${field}`, { required: true })} /> :
+                                                                    <motion.input initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={assignmentData[field]} className='form-control' {...register(`${field}`, { required: true })} />
 
                                         }
                                         {errors[field] && <span className='text-danger'>This field is required</span>}

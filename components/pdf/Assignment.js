@@ -94,6 +94,7 @@ export default function Assignment({ data }) {
         text: {
             fontSize: 17,
             marginTop: 5,
+            whiteSpace: 'nowrap'
         }
     });
     return (
@@ -141,7 +142,7 @@ export default function Assignment({ data }) {
                                 <Text style={{ fontFamily: 'Times-Bold' }}>Session:</Text> {student_session}
                             </Text>
                             <Text style={styles.text}>Department of {student_department}</Text>
-                            <Text style={styles.text}>Bangabandhu Sheikh Mujibur Rahman Science & Technology University, Gopalganj-8100</Text>
+                            <Text style={[styles.text, { fontSize: 15 }]}>Bangabandhu Sheikh Mujibur Rahman Science and Technology University, Gopalganj-8100</Text>
                         </View>
                         <View style={styles.tableCol}>
                             <Text style={styles.text}>
@@ -149,7 +150,7 @@ export default function Assignment({ data }) {
                             </Text>
                             <Text style={[styles.text, { marginTop: 3 }]}>{teacher_position} </Text>
                             <Text style={[styles.text, { marginTop: 20 }]}>Department of {teacher_department} </Text>
-                            <Text style={styles.text}>{teacher_university} </Text>
+                            <Text style={[styles.text, { fontSize: 15 }]}>{teacher_university} </Text>
                         </View>
                     </View>
                 </View>
