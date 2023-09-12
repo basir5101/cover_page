@@ -183,7 +183,7 @@ export default function Assignment1() {
                             <Image height={500} width={500} src={'/images/done.svg'} alt='assignment cover page generator for bsmrstu' />
                         </div>
                         <div className='d-flex justify-content-center align-items-center'>
-                            <PDFDownloadLink className='bounce-btn' style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<Assignment data={assignmentData} />} fileName={`${assignmentData?.student_id || 'cover'}.pdf`}>
+                            <PDFDownloadLink className='bounce-btn' style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<Assignment data={assignmentData} />} fileName={`${assignmentData?.student_id || 'cover'}${assignmentData?.course_code || 'cover'}.pdf`}>
                                 {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
                             </PDFDownloadLink>
                             <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
