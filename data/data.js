@@ -20,11 +20,11 @@ export const campusList = [
     //     logo: '/images/logo/ru.jpg',
     //     url: '/cover-page/ru/assignment'
     // },
-    {
-        type: 'Assignment',
-        campus_name: 'JNU',
-        name_details: 'Jagannath University',
-        logo: '/images/logo/jnu.png',
-        url: '/cover-page/jnu/assignment'
-    },
+    // {
+    //     type: 'Assignment',
+    //     campus_name: 'JNU',
+    //     name_details: 'Jagannath University',
+    //     logo: '/images/logo/jnu.png',
+    //     url: '/cover-page/jnu/assignment'
+    // },
 ]

@@ -17,6 +17,7 @@ export default function Assignment1() {
     const [loading, setLoading] = useState(false);
     const [editing, setEditing] = useState(true);
     const [assignmentData, setAssignmentData] = useState({});
+    const [topic_position, setTopicPosition] = useState('center');
     const [client, setClient] = useState(false);
     const {
         register,
@@ -46,7 +47,7 @@ export default function Assignment1() {
             year: 'numeric'
         });
         setLoading(false);
-        setAssignmentData({ ...data, submission_date: formattedDate })
+        setAssignmentData({ ...data, submission_date: formattedDate, topic_position })
         localStorage.setItem('assignment_data', JSON.stringify({ ...data, submission_date: formattedDate }))
     }
 
@@ -161,8 +162,21 @@ export default function Assignment1() {
                                                             field === 'teacher_university' ?
                                                                 <motion.input initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={'Bangabandhu Sheikh Mujibur Rahman Science and Technology University, Gopalganj - 8100'} placeholder={field} className='form-control' {...register(`${field}`, { required: true })} /> :
                                                                 field === 'submission_date' ?
-                                                                    <motion.input initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={assignmentData[field]} type='date' className='form-control' {...register(`${field}`, { required: true })} /> :
-                                                                    <motion.input initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={assignmentData[field]} className='form-control' {...register(`${field}`, { required: true })} />
+                                                                    <motion.input initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={assignmentData[field]} type='date' className='form-control' {...register(`${field}`, { required: true })} /> : field === 'assignment_topic' ?
+                                                                        <div className='position-relative'>
+                                                                            <select
+                                                                                style={{ width: '100px' }}
+                                                                                className="form-select position-absolute top-0 end-0" aria-label="Default select example"
+                                                                                defaultValue={topic_position}
+                                                                                onChange={(e) => setTopicPosition(e.target.value)}
+                                                                            >
+
+                                                                                <option value={'center'}>center</option>
+                                                                                <option value="left">left</option>
+                                                                            </select>
+                                                                            <motion.textarea initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={assignmentData[field]} className='form-control' {...register(`${field}`, { required: true })} />
+                                                                        </div> :
+                                                                        <motion.input initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={assignmentData[field]} className='form-control' {...register(`${field}`, { required: true })} />
 
                                         }
                                         {errors[field] && <span className='text-danger'>This field is required</span>}
@@ -186,7 +200,7 @@ export default function Assignment1() {
                             <PDFDownloadLink className='bounce-btn' style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<Assignment data={assignmentData} />} fileName={`${assignmentData?.student_id || 'cover'}${assignmentData?.course_code || 'cover'}.pdf`}>
                                 {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
                             </PDFDownloadLink>
-                            <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
+                            {/* <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
                             {/* <div style={styles.pdfContainer}>
                                 <PDFViewer style={styles.pdfViewer}>
                                     <Assignment data={assignmentData} />

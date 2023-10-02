@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export default function Invoice() {
     return (
-        <section className="hero-section-2 py-5">
+        <section className="hero-section-2 py-5 mt-4">
             <div className="container">
                 <div className="row">
                     <motion.div initial={{ y: -300, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.2 }} className="col-10 m-auto d-flex align-items-center justify-content-center">

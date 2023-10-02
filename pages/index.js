@@ -16,8 +16,8 @@ export default function Home() {
     <Layout>
       <SEO />
       <Hero />
-      <Invoice />
       <CampusLists />
+      <Invoice />
     </Layout>
   )
 }

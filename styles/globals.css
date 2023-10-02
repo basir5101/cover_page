@@ -95,16 +95,18 @@ a {
 
 /* navbar  */
 .navbar-nav .navbar-item {
-  background-color: #28a745;
+  background-color: #0f0a42;
   border-radius: 3px;
   padding: 4px 15px !important;
   margin: 1px 1px;
   color: whitesmoke;
+  border: 1px solid #0f0a42;
 }
 
 .navbar-nav .navbar-item:hover {
   background-color: white;
-  color: #28a745;
+  color: #000;
+  border: 1px solid #0f0a42;
 }
 
 .menu {
