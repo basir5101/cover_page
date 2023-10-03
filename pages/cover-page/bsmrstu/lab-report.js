@@ -180,7 +180,7 @@ export default function LabCover() {
                             <Image height={350} width={350} src={'/images/done.svg'} alt='assignment cover page generator for bsmrstu' />
                         </div>
                         <div className='d-flex justify-content-center align-items-center'>
-                            <PDFDownloadLink style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<LabReport data={assignmentData} />} fileName={`lab_report_${course_code}.pdf`}>
+                            <PDFDownloadLink style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<LabReport data={assignmentData} />} fileName={`lab_report_${assignmentData?.course_code}.pdf`}>
                                 {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
                             </PDFDownloadLink>
                             <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>

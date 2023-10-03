@@ -200,7 +200,7 @@ export default function Assignment1() {
                             <PDFDownloadLink className='bounce-btn' style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<Assignment data={assignmentData} />} fileName={`${assignmentData?.student_id || 'cover'}${assignmentData?.course_code || 'cover'}.pdf`}>
                                 {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
                             </PDFDownloadLink>
-                            {/* <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
+                            <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
                             {/* <div style={styles.pdfContainer}>
                                 <PDFViewer style={styles.pdfViewer}>
                                     <Assignment data={assignmentData} />
