@@ -19,11 +19,11 @@ const Navbar = () => {
                             <Link className="nav-link navbar-item" aria-current="page" href="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link navbar-item" aria-current="page" href='/cover-page/bsmrstu/assignment'>Assignment</Link>
+                            <Link className="nav-link navbar-item" aria-current="page" href='/cover-page'>Cover Pages</Link>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <Link className="nav-link navbar-item" aria-current="page" href='/cover-page/bsmrstu/lab-report'>Lab Report</Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>
