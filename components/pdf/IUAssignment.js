@@ -1,10 +1,10 @@
 import React from 'react'
 import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer';
 
-export default function PDFJNU({ data }) {
+export default function IUAssignment({ data }) {
 
     const {
-        course_title = 'Course Title',
+        course_name = 'Course Title',
         assignment_title = 'Assignment Title',
         course_code = 'Course Code',
         student_name = 'Student Name',
@@ -16,7 +16,9 @@ export default function PDFJNU({ data }) {
         teacher_university = 'Teacher University',
         submission_date = 'Submission Date',
         student_batch = 'Student batch',
-        assignment_no
+        student_roll_no = 'Student Roll Number',
+        student_registration_no = 'Student Registration Number',
+        student_session = 'Student Session'
     } = data;
 
 
@@ -31,12 +33,12 @@ export default function PDFJNU({ data }) {
     // Create styles
     const styles = StyleSheet.create({
         container: {
-            padding: 40,
+            padding: 60,
             fontFamily: 'Times New Roman',
             textAlign: 'center',
         },
         primaryColor: {
-            color: '#954a22',
+            color: '#1da902',
         },
         secondaryColor: {
             color: '#3730a3',
@@ -67,7 +69,7 @@ export default function PDFJNU({ data }) {
             padding: 8,
         },
         text: {
-            fontSize: 18,
+            fontSize: 15,
             marginTop: 5,
         },
         header: {
@@ -75,7 +77,7 @@ export default function PDFJNU({ data }) {
             fontFamily: 'Times-Bold'
         },
         subheader: {
-            fontSize: 20,
+            fontSize: 19,
             fontFamily: 'Times-Bold'
         },
         bold: {
@@ -85,21 +87,17 @@ export default function PDFJNU({ data }) {
     return (
         <Document>
             <Page size="A4" style={styles.container}>
-                <View>
-                    <Text style={[styles.header, styles.primaryColor]}> Jagannath University </Text>
-                    <Text style={styles.subheader}> Department of {student_department} </Text>
-                </View>
                 <View style={styles.logoContainer}>
-                    <Image style={styles.logo} src="/images/logo/jnu.png" alt="bsmrstu logo" />
+                    <Image style={styles.logo} src="/images/logo/iu.png" alt="islamic university logo" />
                 </View>
-                <View>
-                    <Text style={[styles.text, styles.secondaryColor, styles.bold]}> Assignment On </Text>
-                    <Text style={styles.subheader}> {assignment_title} </Text>
-                    {
-                        assignment_no && <Text style={styles.text} > {assignment_title} </Text>
-                    }
-                    <Text style={[styles.text, styles.bold]}> Course Title: {course_title} </Text>
+
+                <View style={{ textAlign: 'center' }}>
+                    <Text style={[styles.text, styles.secondaryColor]}> An </Text>
+                    <Text style={[{ fontSize: 17 }, styles.secondaryColor]}> Assignment On </Text>
+                    <Text style={[styles.subheader, styles.primaryColor]}> {assignment_title} </Text>
                     <Text style={[styles.text, styles.bold]}> Course Code: {course_code} </Text>
+                    <Text style={[styles.text, styles.bold]}> Course Name: {course_name} </Text>
+
                 </View>
                 <View style={styles.table}>
                     <View style={styles.tableRow} >
@@ -126,13 +124,16 @@ export default function PDFJNU({ data }) {
                                 {student_name}
                             </Text>
                             <Text style={styles.text}>
-                                ID: {student_id}
+                                Roll No: {student_roll_no}
                             </Text>
                             <Text style={styles.text} >
-                                {student_batch} Batch
+                                Registration No.: {student_registration_no}
+                            </Text>
+                            <Text style={styles.text} >
+                                Session: {student_session}
                             </Text>
                             <Text style={styles.text}>Department of {student_department}</Text>
-                            <Text style={styles.text}>Jagannath University, Dhaka </Text>
+                            <Text style={styles.text}>Islamic University, Kushtia </Text>
                         </View>
                     </View>
                 </View>

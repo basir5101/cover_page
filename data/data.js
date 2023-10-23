@@ -27,4 +27,11 @@ export const campusList = [
         logo: '/images/pages/jnu.png',
         url: '/cover-page/jnu/assignment'
     },
+    {
+        type: 'Assignment',
+        campus_name: 'IU',
+        name_details: 'Islamic University',
+        logo: '/images/pages/iu.png',
+        url: '/cover-page/iu/assignment'
+    },
 ]
