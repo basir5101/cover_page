@@ -1,8 +1,7 @@
 import React from 'react'
 import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer';
 
-export default function IUAssignment({ data }) {
-
+export default function IUAssignment({ data, name, logo }) {
     const {
         course_name = 'Course Title',
         assignment_title = 'Assignment Title',
@@ -18,7 +17,7 @@ export default function IUAssignment({ data }) {
         student_batch = 'Student batch',
         student_roll_no = 'Student Roll Number',
         student_registration_no = 'Student Registration Number',
-        student_session = 'Student Session'
+        student_session = 'Student Session',
     } = data;
 
 
@@ -88,7 +87,7 @@ export default function IUAssignment({ data }) {
         <Document>
             <Page size="A4" style={styles.container}>
                 <View style={styles.logoContainer}>
-                    <Image style={styles.logo} src="/images/logo/iu.png" alt="islamic university logo" />
+                    <Image style={styles.logo} src={logo} alt={name} />
                 </View>
 
                 <View style={{ textAlign: 'center' }}>
@@ -133,7 +132,7 @@ export default function IUAssignment({ data }) {
                                 Session: {student_session}
                             </Text>
                             <Text style={styles.text}>Department of {student_department}</Text>
-                            <Text style={styles.text}>Islamic University, Kushtia </Text>
+                            <Text style={styles.text}> {name} </Text>
                         </View>
                     </View>
                 </View>

@@ -107,9 +107,11 @@ export default function Assignment({ data }) {
                     padding: 30,
                     margin: 50,
                 }}>
-                    <Text style={styles.heading}>BANGABANDHU SHEIKH MUJIBUR RAHMAN SCIENCE</Text>
-                    <Text style={styles.heading}>&</Text>
-                    <Text style={styles.heading}>TECHNOLOGY UNIVERSITY</Text>
+                    <View>
+                        <Text style={styles.heading}>BANGABANDHU SHEIKH MUJIBUR RAHMAN SCIENCE</Text>
+                        <Text style={styles.heading}>&</Text>
+                        <Text style={styles.heading}>TECHNOLOGY UNIVERSITY</Text>
+                    </View>
                     <View style={styles.logoContainer}>
                         <Image style={styles.logo} src="/images/logo/bsmrstu.jpg" alt="bsmrstu logo" />
                     </View>

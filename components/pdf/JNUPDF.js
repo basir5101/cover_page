@@ -1,7 +1,7 @@
 import React from 'react'
 import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer';
 
-export default function PDFJNU({ data }) {
+export default function PDFJNU({ data, name, logo }) {
 
     const {
         course_title = 'Course Title',
@@ -86,11 +86,11 @@ export default function PDFJNU({ data }) {
         <Document>
             <Page size="A4" style={styles.container}>
                 <View>
-                    <Text style={[styles.header, styles.primaryColor]}> Jagannath University </Text>
+                    <Text style={[styles.header, styles.primaryColor]}> {name} </Text>
                     <Text style={styles.subheader}> Department of {student_department} </Text>
                 </View>
                 <View style={styles.logoContainer}>
-                    <Image style={styles.logo} src="/images/logo/jnu.png" alt="bsmrstu logo" />
+                    <Image style={styles.logo} src={logo} alt={`${name} logo`} />
                 </View>
                 <View>
                     <Text style={[styles.text, styles.secondaryColor, styles.bold]}> Assignment On </Text>
@@ -132,7 +132,7 @@ export default function PDFJNU({ data }) {
                                 {student_batch} Batch
                             </Text>
                             <Text style={styles.text}>Department of {student_department}</Text>
-                            <Text style={styles.text}>Jagannath University, Dhaka </Text>
+                            <Text style={styles.text}> {name} </Text>
                         </View>
                     </View>
                 </View>

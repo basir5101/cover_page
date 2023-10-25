@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import Assignment from '@/components/pdf/Assignment';
 import dynamic from 'next/dynamic';
 import { useForm } from "react-hook-form"
 import Image from 'next/image';
@@ -10,18 +9,21 @@ const PDFDownloadLink = dynamic(() => import('@react-pdf/renderer').then(mod => 
     ssr: false, // Disable server-side rendering for PDFViewer
 });
 import { motion } from 'framer-motion';
+import { useAssignmentContext } from '../context/AssignmentContext';
 
 export default function FormGenerator({
     fields = [],
     title = 'assignment cover page',
     Design,
-    university = '',
 }) {
     const [loading, setLoading] = useState(false);
     const [editing, setEditing] = useState(true);
     const [assignmentData, setAssignmentData] = useState({});
     const [topic_position, setTopicPosition] = useState('center');
     const [client, setClient] = useState(false);
+    // const [universityName, setUniversityName] = useState(university)
+    const { universityName, universityLogo, handleName, handleLogo } = useAssignmentContext()
+
     const {
         register,
         handleSubmit,
@@ -82,18 +84,45 @@ export default function FormGenerator({
             height: '90%',
         },
     };
+    const handleFileChange = (e) => {
+        e.preventDefault();
+        const selectedFile = e.target.files[0];
+        const url = URL.createObjectURL(selectedFile);
+        handleLogo(url)
+    };
     return (
         <section className='container py-5'>
             <h1 className='my-4 text-primary' style={{ fontSize: '2.3 rem' }}> {title} </h1>
             <div className='mb-3 border border-danger px-2 border-round text-center d-inline-block'>
                 <span className="fw-bold">Note: </span> Please use chrome browser for best experience.
             </div>
-            {
-                loading && <div className="d-flex align-items-center">
-                    <strong>Loading...</strong>
-                    <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+            <div className='d-flex mb-3 justify-content center align-items-end'>
+                <Image src={universityLogo} alt={universityName} height={280} width={240} style={{
+                    height: '280px',
+                    width: 'auto',
+                }} />
+                <div style={{
+                    position: 'relative',
+                    overflow: 'hidden',
+                }} className="file btn btn-secondary ms-1">
+                    Change Logo
+                    <input
+                        onChange={handleFileChange}
+                        accept="image/*"
+                        style={{
+                            position: 'absolute',
+                            opacity: 0,
+                            right: 0,
+                            top: 0
+                        }} type="file" name="file" />
                 </div>
-            }
+
+            </div>
+            <div className="col-md-4 mb-4">
+                <motion.label initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} htmlFor="title">University Name: </motion.label>
+                <motion.input initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={universityName} onChange={(e) => handleName(e.target.value)} className='form-control' />
+            </div>
+
             {
                 !loading && editing && client &&
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -143,7 +172,7 @@ export default function FormGenerator({
                                                             ))}
                                                         </motion.select> :
                                                         field === 'teacher_university' ?
-                                                            <motion.input initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={university} placeholder={field} className='form-control' {...register(`${field}`, { required: true })} /> :
+                                                            <motion.input initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={universityName} placeholder={field} className='form-control' {...register(`${field}`, { required: true })} /> :
                                                             field === 'submission_date' ?
                                                                 <motion.input initial={{ x: 150, opacity: 0.1 }} whileInView={{ x: 0, opacity: 1 }} defaultValue={assignmentData[field]} type='date' className='form-control' {...register(`${field}`, { required: true })} /> : field === 'assignment_topic' ?
                                                                     <div className='position-relative'>
@@ -180,15 +209,14 @@ export default function FormGenerator({
                         <Image height={500} width={500} src={'/images/done.svg'} alt={title} />
                     </div>
                     <div className='d-flex justify-content-center align-items-center'>
-                        <PDFDownloadLink className='bounce-btn' style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<Design data={assignmentData} />} fileName={`${assignmentData?.student_id || 'cover'} ${new Date().toLocaleTimeString() || 'cover'}.pdf`}>
+                        <PDFDownloadLink className='bounce-btn' style={{ color: '#fff', borderRadius: '5px', backgroundColor: '#28a745', padding: '7px 25px', textDecoration: 'none', }} document={<Design data={assignmentData} name={universityName} logo={universityLogo} />} fileName={`${assignmentData?.student_id || 'cover'} ${new Date().toLocaleTimeString() || 'cover'}.pdf`}>
                             {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
                         </PDFDownloadLink>
                         <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
-
                     </div>
                     {/* <div style={styles.pdfContainer}>
                         <PDFViewer style={styles.pdfViewer}>
-                            <Design data={assignmentData} />
+                            <Design data={assignmentData} name={universityName} logo={universityLogo} />
                         </PDFViewer>
                     </div> */}
                 </>
