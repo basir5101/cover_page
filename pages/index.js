@@ -8,6 +8,7 @@ import SEO from '@/components/SEO/SEO';
 import Layout from '@/components/layout/CommonLayout';
 import Hero from '@/components/home/Hero';
 import Invoice from '@/components/home/Invoice';
+import Benefit from '@/components/home/Benefit';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,6 +18,7 @@ export default function Home() {
       <SEO />
       <Hero />
       <CampusLists />
+      <Benefit />
       <Invoice />
     </Layout>
   )

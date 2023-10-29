@@ -13,13 +13,13 @@ export const campusList = [
         logo: '/images/pages/bsmrstu2.png',
         url: '/cover-page/bsmrstu/lab-report'
     },
-    // {
-    //     type: 'Assignment',
-    //     campus_name: 'RU',
-    //     name_details: 'Rajshahi University',
-    //     logo: '/images/logo/ru.jpg',
-    //     url: '/cover-page/ru/assignment'
-    // },
+    {
+        type: 'Assignment',
+        campus_name: 'RU',
+        name_details: 'University of Rajshahi',
+        logo: '/images/pages/ru.png',
+        url: '/cover-page/ru/assignment'
+    },
     {
         type: 'Assignment',
         campus_name: 'JNU',

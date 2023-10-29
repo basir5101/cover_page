@@ -191,12 +191,11 @@ a {
 }
 
 .headline {
-  font-size: 2rem;
+  font-size: 1.8rem;
   background: linear-gradient(to right, #007bff, #237b98);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  padding-left: 20px;
   /* Space for the border */
   position: relative;
   z-index: 1;

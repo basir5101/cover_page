@@ -1,7 +1,7 @@
 import React from 'react'
 import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer';
 
-export default function RUPDF({ data }) {
+export default function RUPDF({ data, name, logo }) {
 
     const {
         assignment_topic = 'Assignment Topic',
@@ -100,9 +100,9 @@ export default function RUPDF({ data }) {
     return (
         <Document>
             <Page size="A4" style={styles.container}>
-                <Text style={styles.heading}>University of Rajshahi</Text>
+                <Text style={styles.heading}>{name}</Text>
                 <View style={styles.logoContainer}>
-                    <Image style={styles.logo} src="/images/logo/ru.jpg" alt="bsmrstu logo" />
+                    <Image style={styles.logo} src={logo} alt="bsmrstu logo" />
                 </View>
                 <Text style={[styles.assignmentTitle, { fontFamily: 'Times-Bold' }]}>Assignment on</Text>
                 <Text style={styles.assignmentTitle}> {assignment_topic} </Text>
@@ -138,7 +138,7 @@ export default function RUPDF({ data }) {
                                 <Text style={{ fontFamily: 'Times-Bold' }}>Session:</Text> {student_session}
                             </Text>
                             <Text style={styles.text}>Department of {student_department}</Text>
-                            <Text style={styles.text}>Bangabandhu Sheikh Mujibur Rahman Science & Technology University, Gopalganj-8100</Text>
+                            <Text style={styles.text}>{name} </Text>
                         </View>
                         <View style={styles.tableCol}>
                             <Text style={styles.text}>

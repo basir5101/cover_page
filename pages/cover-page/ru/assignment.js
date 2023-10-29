@@ -6,6 +6,8 @@ import SEO from '@/components/SEO/SEO';
 import Layout from '@/components/layout/CommonLayout';
 import RUPDF from '@/components/pdf/RUPDF';
 import Form from '@/components/form/Form';
+import FormGenerator from '@/components/common/FormGenerator';
+import { AssignmentProvider } from '@/components/context/AssignmentContext';
 const PDFViewer = dynamic(() => import('@react-pdf/renderer').then(mod => mod.PDFViewer), {
     ssr: false, // Disable server-side rendering for PDFViewer
 });
@@ -86,17 +88,22 @@ export default function Assignment() {
     };
 
     return (
-        <>
+        <Layout>
             <SEO
-                title="Assignment Cover Page Maker for RU</h1>"
+                title="Assignment Cover Page Maker for University of Rajshahi"
                 description="Generate Assignment Cover Page for University of Rajshahi. Create a new assignment cover page for RU and configure the new assignment cover page for RU"
             />
-            <Form
-                title={'Assignment Cover Page - University of Rajshahi'}
-                PDF={RUPDF}
-                fields={fields}
-            />
+            <AssignmentProvider
+                university='University of Rajshahi'
+                logo={"/images/logo/ru.jpg"}
+            >
+                <FormGenerator
+                    Design={RUPDF}
+                    fields={fields}
+                    title='Assignment Cover Page Maker for RU'
+                />
+            </AssignmentProvider>
 
-        </>
+        </Layout>
     )
 }
