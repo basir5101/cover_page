@@ -1,5 +1,5 @@
 import React from 'react'
-import { AtSign, Facebook, GitHub, Linkedin, PhoneCall } from 'react-feather'
+import { AtSign, Facebook, GitHub, Linkedin, PhoneCall, ShoppingCart } from 'react-feather'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 export default function Footer() {
@@ -29,13 +29,18 @@ export default function Footer() {
             link: "https://wa.me/01774066225",
             component: <PhoneCall />
         },
+        {
+            title: 'Fiverr',
+            link: "https://www.fiverr.com/s/761Z54",
+            component: <ShoppingCart />
+        },
+
     ]
     return (
         <footer className='bg-dark text-white py-5 mt-5'>
             <div className=' text-white text-center'>
                 <h3 className='mb-3'>touch with me</h3>
                 <motion.div initial={{ scale: 0.25 }} whileInView={{ scale: 1 }} className='p-12'>
-
                     <ul className='d-flex align-items-center justify-content-center'>
                         {
                             contactDetails.map((detail, index) => (
