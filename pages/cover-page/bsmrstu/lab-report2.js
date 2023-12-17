@@ -174,7 +174,7 @@ export default function LabCover() {
 
 
                 {
-                    // !editing &&
+                    !editing &&
                     <>
                         <div className='text-center'>
                             <Image height={350} width={350} src={'/images/done.svg'} alt='assignment cover page generator for bsmrstu' />
@@ -184,11 +184,11 @@ export default function LabCover() {
                                 {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
                             </PDFDownloadLink>
                             <button className='btn btn-primary ms-2 px-5' onClick={() => (setEditing(true))}>Edit Again</button>
-                            <div style={styles.pdfContainer}>
+                            {/* <div style={styles.pdfContainer}>
                                 <PDFViewer style={styles.pdfViewer}>
                                     <LabReport2 data={assignmentData} />
                                 </PDFViewer>
-                            </div>
+                            </div> */}
                         </div>
                     </>
                 }
