@@ -19,8 +19,8 @@ export default function Home() {
       <Hero />
       <CampusLists />
       <div className='my-3'>
-        <div class="ratio ratio-16x9">
-          <iframe src="https://www.youtube.com/embed/VWnWvBdj-fg" title="Assignment Cover Page Maker" allowfullscreen></iframe>
+        <div className="ratio ratio-16x9">
+          <iframe src="https://www.youtube.com/embed/VWnWvBdj-fg" title="Assignment Cover Page Maker" allowFullScreen={true}></iframe>
         </div>
       </div>
       <Benefit />
