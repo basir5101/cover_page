@@ -73,10 +73,6 @@ export default function LabCover() {
         'student_semester',
         'student_session',
         'student_department',
-        'teacher_name',
-        'teacher_position',
-        'teacher_department',
-        'teacher_university',
         'submission_date'
     ];
 
