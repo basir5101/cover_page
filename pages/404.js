@@ -10,7 +10,7 @@ export default function NotFound() {
                     <h1 className="display-4">404 - Page Not Found</h1>
                     <p className="lead">{`The page you're looking for doesn't exist.`}</p>
                     <Link className="btn btn-primary" href="/">
-                        Go Back to Home
+                        Go Back to Home Page
                     </Link>
                 </div>
             </section>
