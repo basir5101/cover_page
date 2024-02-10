@@ -22,6 +22,11 @@ export default function App({ Component, pageProps }) {
       src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       crossorigin="anonymous"
     /> */}
+    <meta name="google-adsense-account" content="ca-pub-5411529356815327"></meta>
+    <Script
+      onError={(e) => console.log('failed to load', e)}
+      async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5411529356815327"
+      crossorigin="anonymous" />
     <Component {...pageProps} />
   </>
 }
