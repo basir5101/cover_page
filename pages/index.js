@@ -18,9 +18,17 @@ export default function Home() {
       <SEO />
       <Hero />
       <CampusLists />
-      <div className='my-3'>
-        <div className="ratio ratio-16x9">
-          <iframe src="https://www.youtube.com/embed/VWnWvBdj-fg" title="Assignment Cover Page Maker" allowFullScreen={true}></iframe>
+      <div className='py-5 px-5 bg-dark text-white'>
+        <div className="row">
+          <div className="col-md-6">
+            <h2 className="text-primary">Watch This Video Tutorial</h2>
+            <h4>It is only 1 minute</h4>
+          </div>
+          <div className="col-md-6">
+            <div className="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/VWnWvBdj-fg" title="Assignment Cover Page Maker" allowFullScreen={true}></iframe>
+            </div>
+          </div>
         </div>
       </div>
       <Benefit />

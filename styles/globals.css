@@ -143,10 +143,10 @@ a {
 
 /* home  */
 .hero-section {
-  background-image: url('../public/images/hero/1.jpg') !important;
+  background-image: url('../public/images/book.svg') !important;
   height: 100%;
   width: 100%;
-  background-size: cover;
+  background-size: contain;
 }
 
 .hero-section-2 {

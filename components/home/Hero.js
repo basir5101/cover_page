@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export default function Hero() {
     return (
-        <section className="hero-section py-5 text-white text-center">
+        <section className="hero-section bg-dark py-5 text-white text-center">
             <div className="container">
                 <div className="row">
                     <motion.div initial={{ y: -300, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.2 }} className="col-md-7 m-auto d-flex align-items-center justify-content-center">
