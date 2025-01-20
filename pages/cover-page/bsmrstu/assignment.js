@@ -10,7 +10,7 @@ export default function Assignment1() {
     "assignment_topic",
     "course_title",
     "course_code",
-    // 'student_name',
+    "student_name",
     "student_id",
     "student_year",
     "student_semester",
