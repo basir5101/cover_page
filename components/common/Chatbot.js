@@ -88,9 +88,20 @@ export default function ChatBot() {
   const [message, setMessage] = useState("");
   const [submitStatus, setSubmitStatus] = useState(null);
   const formRef = useRef(null);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!name) {
+      setError("Name is required");
+      return;
+    } else if (!email) {
+      setError("Email is required");
+      return;
+    } else if (!message || !message.length > 3) {
+      setError("Please write a proper message");
+      return;
+    }
     setIsSubmitting(true);
 
     try {
@@ -150,22 +161,23 @@ export default function ChatBot() {
             onChange={(e) => setName(e.target.value)}
             name="name"
             className="form-control mb-3"
-            placeholder="enter your name"
+            placeholder="Enter your name"
           />
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             name="email"
             className="form-control mb-3"
-            placeholder="enter your email"
+            placeholder="Enter your email"
           />
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             name="message"
-            className="form-control mb-3"
-            placeholder="enter your advise/request/message"
+            className="form-control mb-2"
+            placeholder="Enter your advise/request/message"
           />
+          {error && <div className="text-info text-center mb-2"> {error} </div>}
           <input
             type="submit"
             onClick={handleSubmit}
