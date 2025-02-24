@@ -8,10 +8,10 @@ export default function Champions() {
     <div className="min-h-screen bg-gray-100">
       <Navbar />
       <Head>
-        <title>Live Cricket Stream - Champions</title>
+        <title>Live Cricket Stream - champions-trophy</title>
         <meta
           name="description"
-          content="Watch live cricket streaming on Champions page."
+          content="Watch live cricket champions-trophy streaming."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
