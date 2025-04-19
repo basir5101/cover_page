@@ -29,14 +29,14 @@ export default function Assignment1() {
         description="Generate Assignment Cover Page for BSMRSTU. Create a new assignment cover page for BSMRSTU and configure the new assignment cover page for BSMRSTU"
       />
       <AssignmentProvider
-        university="Bangabandhu Sheikh Mujibur Rahman Science and Technology University, Gopalganj - 8100"
+        university="Gopalganj Science and Technology University"
         logo={"/images/logo/bsmrstu.jpg"}
       >
         <FormGenerator
           fields={fields}
           title="Generate Assignment Cover Page for BSMRSTU"
           Design={Assignment}
-          university="Bangabandhu Sheikh Mujibur Rahman Science and Technology University, Gopalganj - 8100"
+          university="Gopalganj Science and Technology University"
         />
       </AssignmentProvider>
     </Layout>

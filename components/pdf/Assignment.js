@@ -114,10 +114,8 @@ export default function Assignment({ data }) {
         >
           <View>
             <Text style={styles.heading}>
-              BANGABANDHU SHEIKH MUJIBUR RAHMAN SCIENCE
+              GOPALGANJ SCIENCE and TECHNOLOGY UNIVERSITY
             </Text>
-            <Text style={styles.heading}>&</Text>
-            <Text style={styles.heading}>TECHNOLOGY UNIVERSITY</Text>
           </View>
           <View style={styles.logoContainer}>
             <Image
@@ -195,9 +193,8 @@ export default function Assignment({ data }) {
                 <Text style={styles.text}>
                   Department of {student_department}
                 </Text>
-                <Text style={{ fontSize: 11, marginTop: 5 }}>
-                  Bangabandhu Sheikh Mujibur Rahman Science and Technology
-                  University, Gopalganj-8100
+                <Text style={{ fontSize: 13, marginTop: 5 }}>
+                  Gopalganj Science and Technology University
                 </Text>
               </View>
               <View style={styles.tableCol}>
@@ -211,7 +208,7 @@ export default function Assignment({ data }) {
                 <Text style={[styles.text, { marginTop: 20 }]}>
                   Department of {teacher_department}{" "}
                 </Text>
-                <Text style={[{ fontSize: 14, marginTop: 5, fontSize: 11 }]}>
+                <Text style={[{ marginTop: 5, fontSize: 13 }]}>
                   {teacher_university}{" "}
                 </Text>
               </View>
