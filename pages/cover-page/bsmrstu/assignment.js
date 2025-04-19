@@ -25,8 +25,8 @@ export default function Assignment1() {
   return (
     <Layout>
       <SEO
-        title="Generate Assignment Cover Page for BSMRSTU</h1>"
-        description="Generate Assignment Cover Page for BSMRSTU. Create a new assignment cover page for BSMRSTU and configure the new assignment cover page for BSMRSTU"
+        title="Generate Assignment Cover Page for GSTU</h1>"
+        description="Generate Assignment Cover Page for GSTU. Create a new assignment cover page for GSTU and configure the new assignment cover page for GSTU"
       />
       <AssignmentProvider
         university="Gopalganj Science and Technology University"
@@ -34,7 +34,7 @@ export default function Assignment1() {
       >
         <FormGenerator
           fields={fields}
-          title="Generate Assignment Cover Page for BSMRSTU"
+          title="Generate Assignment Cover Page for GSTU"
           Design={Assignment}
           university="Gopalganj Science and Technology University"
         />

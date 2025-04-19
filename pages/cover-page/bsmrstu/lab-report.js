@@ -103,11 +103,11 @@ export default function LabCover() {
     <Layout>
       <section className="container py-5">
         <SEO
-          title="Generate Lab report Cover Page for BSMRSTU</h1>"
-          description="Generate Lab report Cover Page for BSMRSTU. Create a new Lab report cover page for BSMRSTU and configure the new Lab report cover page for BSMRSTU"
+          title="Generate Lab report Cover Page for GSTU</h1>"
+          description="Generate Lab report Cover Page for GSTU. Create a new Lab report cover page for GSTU and configure the new Lab report cover page for GSTU"
         />
         <h1 className="my-4 text-primary" style={{ fontSize: "2.3 rem" }}>
-          Generate Lab Report Cover Page for BSMRSTU
+          Generate Lab Report Cover Page for GSTU
         </h1>
         {loading && (
           <div className="d-flex align-items-center">
@@ -202,7 +202,7 @@ export default function LabCover() {
                   ) : field === "teacher_university" ? (
                     <input
                       defaultValue={
-                        "Gopalganj Science and Technology University Gopalganj - 8100"
+                        "Gopalganj Science and Technology University"
                       }
                       className="form-control"
                       {...register(`${field}`, { required: true })}

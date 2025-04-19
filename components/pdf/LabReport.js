@@ -112,10 +112,8 @@ export default function LabReport({ data }) {
           }}
         >
           <Text style={styles.heading}>
-            BANGABANDHU SHEIKH MUJIBUR RAHMAN SCIENCE
+            GOPALGANJ SCIENCE and TECHNOLOGY UNIVERSITY
           </Text>
-          <Text style={styles.heading}>&</Text>
-          <Text style={styles.heading}>TECHNOLOGY UNIVERSITY</Text>
           <View style={styles.logoContainer}>
             <Image
               style={styles.logo}
@@ -186,7 +184,7 @@ export default function LabReport({ data }) {
                 </Text>
                 <Text
                   style={{
-                    fontSize: 11,
+                    fontSize: 13,
                     marginTop: 5,
                     fontFamily: "Times-Bold",
                   }}
@@ -205,7 +203,7 @@ export default function LabReport({ data }) {
                 <Text style={[styles.text, { marginTop: 20 }]}>
                   Department of {teacher_department}{" "}
                 </Text>
-                <Text style={[{ fontSize: 14, marginTop: 5, fontSize: 11 }]}>
+                <Text style={[{ marginTop: 5, fontSize: 13 }]}>
                   {teacher_university}{" "}
                 </Text>
               </View>
