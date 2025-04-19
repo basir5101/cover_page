@@ -112,7 +112,7 @@ export default function LabReport({ data }) {
           }}
         >
           <Text style={styles.heading}>
-            GOPALGANJ SCIENCE and TECHNOLOGY UNIVERSITY
+            GOPALGANJ SCIENCE AND TECHNOLOGY UNIVERSITY
           </Text>
           <View style={styles.logoContainer}>
             <Image

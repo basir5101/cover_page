@@ -114,7 +114,7 @@ export default function Assignment({ data }) {
         >
           <View>
             <Text style={styles.heading}>
-              GOPALGANJ SCIENCE and TECHNOLOGY UNIVERSITY
+              GOPALGANJ SCIENCE AND TECHNOLOGY UNIVERSITY
             </Text>
           </View>
           <View style={styles.logoContainer}>
