@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import { useForm } from "react-hook-form";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useAssignmentContext } from "../context/AssignmentContext";
 const PDFViewer = dynamic(
   () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
   {
@@ -14,8 +16,6 @@ const PDFDownloadLink = dynamic(
     ssr: false, // Disable server-side rendering for PDFViewer
   }
 );
-import { motion } from "framer-motion";
-import { useAssignmentContext } from "../context/AssignmentContext";
 
 export default function FormGenerator({
   fields = [],
@@ -200,7 +200,7 @@ export default function FormGenerator({
                     {...register(field)}
                   >
                     <option value="">Select Year</option>
-                    {["1st", "2nd", "3rd", "4th"].map((year) => (
+                    {["1st", "2nd", "3rd", "4th", "M.Sc."].map((year) => (
                       <option key={year} value={year}>
                         {year}
                       </option>

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import dynamic from "next/dynamic";
-import { useForm } from "react-hook-form";
-import Image from "next/image";
-import SEO from "@/components/SEO/SEO";
 import Layout from "@/components/layout/CommonLayout";
 import RUPDF from "@/components/pdf/RUPDF";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 const PDFViewer = dynamic(
   () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
   {
@@ -117,7 +116,7 @@ export default function Form({ title = "", fields = [], PDF }) {
                   ) : field === "student_year" ? (
                     <select className="form-select" {...register(field)}>
                       <option value="">Select Year</option>
-                      {["1st", "2nd", "3rd", "4th"].map((year) => (
+                      {["1st", "2nd", "3rd", "4th", "M.Sc."].map((year) => (
                         <option key={year} value={year}>
                           {year}
                         </option>
