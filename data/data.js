@@ -3,7 +3,7 @@ export const campusList = [
     type: "Assignment",
     campus_name: "GSTU",
     name_details:
-      "Gopalganj Science and Technology University Gopalganj - 8100",
+      "Gopalganj Science and Technology University Gopalganj - 8105",
     logo: "/images/logo/bsmrstu.jpg",
     url: "/cover-page/bsmrstu/assignment",
   },
@@ -11,7 +11,7 @@ export const campusList = [
     type: "Lab Report",
     campus_name: "GSTU",
     name_details:
-      "Gopalganj Science and Technology University Gopalganj - 8100",
+      "Gopalganj Science and Technology University Gopalganj - 8105",
     logo: "/images/logo/bsmrstu.jpg",
     url: "/cover-page/bsmrstu/lab-report",
   },

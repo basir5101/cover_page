@@ -1,12 +1,11 @@
-import React from "react";
 import {
   Document,
+  Font,
+  Image,
   Page,
+  StyleSheet,
   Text,
   View,
-  StyleSheet,
-  Image,
-  Font,
 } from "@react-pdf/renderer";
 
 export default function LabReport2({ data }) {
@@ -123,7 +122,7 @@ export default function LabReport2({ data }) {
               alt="bsmrstu logo"
             />
           </View>
-          <Text style={styles.subTitle}>GOPALGANJ-8100</Text>
+          <Text style={styles.subTitle}>GOPALGANJ-8105</Text>
           <View style={styles.hr} />
           <Text style={[styles.assignmentTitle, { fontFamily: "Times-Bold" }]}>
             {" "}

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import Assignment from "@/components/pdf/Assignment";
-import dynamic from "next/dynamic";
-import { useForm } from "react-hook-form";
-import LabReport2 from "@/components/pdf/LabReport2";
-import Image from "next/image";
 import SEO from "@/components/SEO/SEO";
 import Layout from "@/components/layout/CommonLayout";
+import LabReport2 from "@/components/pdf/LabReport2";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 const PDFViewer = dynamic(
   () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
   {
@@ -198,7 +197,7 @@ export default function LabCover() {
                   ) : field === "teacher_university" ? (
                     <input
                       defaultValue={
-                        "Gopalganj Science and Technology University Gopalganj - 8100"
+                        "Gopalganj Science and Technology University Gopalganj - 8105"
                       }
                       className="form-control"
                       {...register(`${field}`, { required: true })}
