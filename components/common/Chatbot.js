@@ -28,10 +28,10 @@
 // export default ChatBot
 
 //import "./styles.css";
-import { useState, useEffect, useRef } from "react";
-import { useAnimate, stagger, motion } from "framer-motion";
-import { MessageSquare } from "react-feather";
 import emailjs from "@emailjs/browser";
+import { motion, stagger, useAnimate } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { MessageSquare } from "react-feather";
 const staggerMenuItems = stagger(0.1, { startDelay: 0.15 });
 
 function useMenuAnimation(isOpen) {
@@ -135,14 +135,16 @@ export default function ChatBot() {
       <motion.button
         whileTap={{ scale: 0.97 }}
         onClick={() => setIsOpen(!isOpen)}
+        className="btn btn-primary d-flex align-items-center gap-2"
       >
-        <MessageSquare />
+        <MessageSquare /> Message
         <div className="arrow" style={{ transformOrigin: "50% 55%" }}>
           <svg width="15" height="15" viewBox="0 0 20 20">
             <path d="M0 7 L 20 7 L 10 16" />
           </svg>
         </div>
       </motion.button>
+
       <ul
         className="expand-menu pt-4 pe-4"
         style={{
@@ -151,11 +153,21 @@ export default function ChatBot() {
         }}
       >
         {isSubmitting && (
-          <div className="card mb-4 text-center p-3 fw-bold">
+          <div className="card mb-4 text-center p-3 fw-bold text-success">
             Thank you for your message.
           </div>
         )}
+
         <form ref={formRef} className={`${isSubmitting ? "d-none" : ""}`}>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfuinHLBsD4g1bYWjJNi73LMk5hoy_JQNHfyuUWU7c5GYmgFw/viewform?usp=header"
+            target="_blank"
+            className="btn btn-outline-warning w-100 fw-bold mb-3"
+            style={{ fontSize: "1.1rem" }}
+          >
+            🚀 Request Cover Page
+          </a>
+
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -177,12 +189,12 @@ export default function ChatBot() {
             className="form-control mb-2"
             placeholder="Enter your advise/request/message"
           />
-          {error && <div className="text-info text-center mb-2"> {error} </div>}
+          {error && <div className="text-danger text-center mb-2">{error}</div>}
           <input
             type="submit"
             onClick={handleSubmit}
-            className="form-control mb-3"
-            placeholder="enter you message"
+            className="btn btn-success w-100"
+            value="Submit Message"
           />
         </form>
       </ul>

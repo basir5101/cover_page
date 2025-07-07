@@ -200,11 +200,13 @@ export default function FormGenerator({
                     {...register(field)}
                   >
                     <option value="">Select Year</option>
-                    {["1st", "2nd", "3rd", "4th", "M.Sc."].map((year) => (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    ))}
+                    {["1st", "2nd", "3rd", "4th", "M.Sc.", "LL.M", "MSS"].map(
+                      (year) => (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      )
+                    )}
                   </motion.select>
                 ) : field === "student_session" ? (
                   <motion.select

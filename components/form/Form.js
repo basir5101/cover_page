@@ -116,11 +116,13 @@ export default function Form({ title = "", fields = [], PDF }) {
                   ) : field === "student_year" ? (
                     <select className="form-select" {...register(field)}>
                       <option value="">Select Year</option>
-                      {["1st", "2nd", "3rd", "4th", "M.Sc."].map((year) => (
-                        <option key={year} value={year}>
-                          {year}
-                        </option>
-                      ))}
+                      {["1st", "2nd", "3rd", "4th", "M.Sc.", "LL.M", "MSS"].map(
+                        (year) => (
+                          <option key={year} value={year}>
+                            {year}
+                          </option>
+                        )
+                      )}
                     </select>
                   ) : field === "student_session" ? (
                     <select className="form-select" {...register(field)}>
