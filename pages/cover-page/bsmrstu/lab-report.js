@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import Assignment from "@/components/pdf/Assignment";
-import dynamic from "next/dynamic";
-import { useForm } from "react-hook-form";
-import LabReport from "@/components/pdf/LabReport";
-import Image from "next/image";
 import SEO from "@/components/SEO/SEO";
 import Layout from "@/components/layout/CommonLayout";
+import LabReport from "@/components/pdf/LabReport";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 const PDFViewer = dynamic(
   () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
   {
@@ -162,11 +161,13 @@ export default function LabCover() {
                       {...register(field)}
                     >
                       <option value="">Year</option>
-                      {["1st", "2nd", "3rd", "4th"].map((year) => (
-                        <option key={year} value={year}>
-                          {year}
-                        </option>
-                      ))}
+                      {["1st", "2nd", "3rd", "4th", "M.Sc.", "LL.M", "MSS"].map(
+                        (year) => (
+                          <option key={year} value={year}>
+                            {year}
+                          </option>
+                        )
+                      )}
                     </select>
                   ) : field === "student_session" ? (
                     <select
