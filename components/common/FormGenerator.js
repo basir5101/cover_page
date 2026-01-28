@@ -8,13 +8,13 @@ const PDFViewer = dynamic(
   () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
   {
     ssr: false, // Disable server-side rendering for PDFViewer
-  }
+  },
 );
 const PDFDownloadLink = dynamic(
   () => import("@react-pdf/renderer").then((mod) => mod.PDFDownloadLink),
   {
     ssr: false, // Disable server-side rendering for PDFViewer
-  }
+  },
 );
 
 export default function FormGenerator({
@@ -57,7 +57,7 @@ export default function FormGenerator({
         day: "2-digit",
         month: "2-digit",
         year: "numeric",
-      }
+      },
     );
     setLoading(false);
     setAssignmentData({
@@ -67,7 +67,7 @@ export default function FormGenerator({
     });
     localStorage.setItem(
       "assignment_data",
-      JSON.stringify({ ...data, submission_date: formattedDate })
+      JSON.stringify({ ...data, submission_date: formattedDate }),
     );
   };
 
@@ -205,7 +205,7 @@ export default function FormGenerator({
                         <option key={year} value={year}>
                           {year}
                         </option>
-                      )
+                      ),
                     )}
                   </motion.select>
                 ) : field === "student_session" ? (
@@ -346,7 +346,7 @@ export default function FormGenerator({
               Edit Again
             </button>
           </div>
-          <div style={styles.pdfContainer}>
+          {/* <div style={styles.pdfContainer}>
             <PDFViewer style={styles.pdfViewer}>
               <Design
                 data={assignmentData}
@@ -354,7 +354,7 @@ export default function FormGenerator({
                 logo={universityLogo}
               />
             </PDFViewer>
-          </div>
+          </div> */}
         </>
       )}
     </section>
