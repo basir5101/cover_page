@@ -36,4 +36,11 @@ export const campusList = [
     logo: "/images/pages/iu.png",
     url: "/cover-page/iu/assignment",
   },
+  {
+    type: "Assignment",
+    campus_name: "JSTU",
+    name_details: "Jamalpur Science and Technology University",
+    logo: "/images/pages/jstu.png",
+    url: "/cover-page/jstu/assignment",
+  },
 ];

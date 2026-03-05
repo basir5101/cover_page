@@ -54,8 +54,8 @@ export default function FormGenerator({
     const formattedDate = new Date(data.submission_date).toLocaleDateString(
       "en-GB",
       {
-        day: "2-digit",
-        month: "2-digit",
+        day: "numeric",
+        month: "long",
         year: "numeric",
       },
     );
